@@ -1,5 +1,24 @@
-<h1>New article</h1>
+<!--<%= render 'form' %>-->
+<!--<div class="row">-->
+  <!--<div class="hero-unit span7 offset2">-->
+      <!--<h2>New article</h2>-->
+      <!--<hr />-->
+      <!--<form action="">-->
+        <!--<input type="text" class="span7" placeholder="Title"/>-->
+        <!--<textarea class="span7" rows="30" placeholder="Article content"></textarea>-->
+        <!--<button class="btn btn-primary btn-large pull-right">Post</button>-->
+      <!--</form>-->
+  <!--</div>-->
+<!--</div>-->
 
-<%= render 'form' %>
-
-<%= link_to 'Back', articles_path %>
+<div class="row">
+  <div class="hero-unit span7 offset2">
+    <h2>New article</h2>
+    <hr />
+    <%= form_for(@article) do |f| %>
+        <%= f.text_field :title, class: "span7", placeholder: "Article title" %>
+        <%= f.text_area :content, class: "span7", rows: 25, placeholder: "Enter article content here ..." %>
+        <%= f.submit "Post", class: "btn btn-primary btn-large pull-right" %>
+    <% end %>
+  </div>
+</div>

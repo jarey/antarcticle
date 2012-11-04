@@ -8,12 +8,12 @@ end
 
 RSpec::Matchers.define :have_placeholder do |placeholder|
   match do |page|
-    page.should have_selector("input[placeholder='#{placeholder}']")
+    page.should have_selector("input[placeholder='#{placeholder}'], textarea[placeholder='#{placeholder}']")
   end
 end
 
 def fill_in_placeholder(placeholder, value)
-  find("input[placeholder='#{placeholder}']").set value
+  find("input[placeholder='#{placeholder}'], textarea[placeholder='#{placeholder}']").set value
 end
 
 def sign_in(user)
