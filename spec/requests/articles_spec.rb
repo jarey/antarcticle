@@ -53,4 +53,11 @@ describe "Articles" do
     it { should have_link(user.username) }
     it { should have_content(I18n.l(article.created_at, :format => :long)) }
   end
+
+  describe "article with mardkdown" do
+    let(:article) { FactoryGirl.create(:article, user: user, content: "# Header") }
+    before { visit article_path(article) }
+
+    it { should have_selector('h1', text: "Header") }
+  end
 end

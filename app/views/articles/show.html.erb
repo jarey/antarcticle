@@ -11,7 +11,7 @@
         <li>&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon-user"></i>&nbsp;<strong>by </strong><%= link_to @article.user.username, @article.user %> </li>
       </ul>
       <div class="well2">
-        <%= @article.content %>
+        <%= markdown(@article.content) %>
       </div>
     </div>
   </div>
