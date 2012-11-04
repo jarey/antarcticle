@@ -1,20 +1,18 @@
-<p id="notice"><%= notice %></p>
+<!--<p id="notice"><%= notice %></p>-->
 
-<p>
-  <b>Title:</b>
-  <%= @article.title %>
-</p>
-
-<p>
-  <b>Content:</b>
-  <%= @article.content %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%= @article.user_id %>
-</p>
-
-
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
+<div class="row">
+  <div class="span10 offset1">
+    <div>
+      <div class="page-header">
+        <h2><%= @article.title %></h2>
+      </div>
+      <ul class="breadcrumb" style="background-color: rgb(251, 251, 251);box-shadow: 0px 1px 0px rgb(255, 255, 255) inset;border: 1px solid rgb(221, 221, 221);">
+        <li><i class="icon-calendar "></i>&nbsp;<strong>Posted </strong><%= l @article.created_at, :format => :long %> </li>
+        <li>&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon-user"></i>&nbsp;<strong>by </strong><%= link_to @article.user.username, @article.user %> </li>
+      </ul>
+      <div class="well2">
+        <%= @article.content %>
+      </div>
+    </div>
+  </div>
+</div>

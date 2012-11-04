@@ -1,2 +1,31 @@
 @import "bootstrap";
 @import "bootstrap-responsive";
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,700');
+
+body {
+  background-color: rgb(247, 247, 247);
+}
+
+.well2 {
+  min-height: 20px;
+  padding: 19px;
+  margin-bottom: 20px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 4px 4px 4px 4px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2), -1px -1px 0px rgba(0, 0, 0, 0.1);
+  border: medium none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Josefin Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.page-header {
+  padding-bottom: 0px;
+  margin: 12px 0px;
+}
