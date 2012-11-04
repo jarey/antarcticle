@@ -1,23 +1,26 @@
-<!--<%= render 'form' %>-->
-<!--<div class="row">-->
-  <!--<div class="hero-unit span7 offset2">-->
-      <!--<h2>New article</h2>-->
-      <!--<hr />-->
-      <!--<form action="">-->
-        <!--<input type="text" class="span7" placeholder="Title"/>-->
-        <!--<textarea class="span7" rows="30" placeholder="Article content"></textarea>-->
-        <!--<button class="btn btn-primary btn-large pull-right">Post</button>-->
-      <!--</form>-->
-  <!--</div>-->
-<!--</div>-->
-
 <div class="row">
   <div class="hero-unit span7 offset2">
     <h2>New article</h2>
     <hr />
+    <% if @article.errors.any? %>
+        <div class="alert alert-error">
+          <a class="close" data-dismiss="alert" href="#">×</a>
+          <ul>
+            <% @article.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
     <%= form_for(@article) do |f| %>
-        <%= f.text_field :title, class: "span7", placeholder: "Article title" %>
-        <%= f.text_area :content, class: "span7", rows: 25, placeholder: "Enter article content here ..." %>
+        <%= control_group @article, :title do %>
+            <%= f.text_field :title, class: "span7", placeholder: "Article title" %>
+        <% end %>
+
+        <%= control_group @article, :content do %>
+            <%= f.text_area :content, class: "span7", rows: 25, placeholder: "Enter article content here ..." %>
+        <% end %>
+
         <%= f.submit "Post", class: "btn btn-primary btn-large pull-right" %>
     <% end %>
   </div>

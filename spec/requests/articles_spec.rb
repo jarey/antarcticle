@@ -22,9 +22,24 @@ describe "Articles" do
 
       it "should create an article" do
         expect { click_button "Post" }.to change(Article, :count).by(1)
-        current_path.should == article_path(1)
+      end
+
+      describe "created article" do
+        before { click_button "Post" }
+        it { current_path.should == article_path(1) }
         #should have_selector('div.alert.alert-success', text: "Article was successfully created")
-        should have_content("Article was successfully created")
+        it { should have_content("Article was successfully created") }
+      end
+    end
+
+    describe "invalid data" do
+      it "should not create an article" do
+        expect { click_button "Post" }.not_to change(Article, :count)
+      end
+
+      describe "errors" do
+        before { click_button "Post" }
+        it { should have_error_message('Title') }
       end
     end
   end
