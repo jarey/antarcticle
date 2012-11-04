@@ -1,7 +1,30 @@
 require "spec_helper"
 
-describe ArticlesController do
-  describe "routing" do
+describe "routing" do
+
+  describe "root" do
+    it "should route to articles#index" do
+      get("/").should route_to("articles#index")
+    end
+  end
+
+  describe "authentication routing" do
+    it "should route to sessions#new" do
+      get("/signin").should route_to("sessions#new")
+    end
+
+    it "should route to sessions#destroy" do
+      delete("/signout").should route_to("sessions#destroy")
+    end
+  end
+
+  describe "users routing" do
+    it "should route to users#show" do
+      get("/users/1").should route_to("users#show", :id => "1")
+    end
+  end
+
+  describe "articles routing" do
 
     it "routes to #index" do
       get("/articles").should route_to("articles#index")
