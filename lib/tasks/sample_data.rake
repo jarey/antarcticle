@@ -20,6 +20,6 @@ def make_articles
   30.times do
     content = Faker::Lorem.sentences(10)
     title = Faker::Name.title
-    users.sample(1)[0].articles.create!(ttile: title, content: content)
+    users.sample(1)[0].articles.create!(title: title, content: content)
   end
 end
