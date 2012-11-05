@@ -40,3 +40,11 @@ task :symlink_database_yml do
   run "ln -sfn #{shared_path}/config/database.yml #{release_path}/config/database.yml"
 end
 after "bundle:install", "symlink_database_yml"
+
+namespace :rake_ do
+  desc "Run a task on a remote server."
+  # run like: cap rake_:invoke task=a_certain_task
+  task :invoke do
+    run("cd #{deploy_to}/current; /usr/bin/env rake #{ENV['task']} RAILS_ENV=#{rails_env}")
+  end
+end

@@ -6,7 +6,8 @@ class SessionsController < ApplicationController
     user = User.find_by_username(params[:session][:username])
     if user
       sign_in user
-      redirect_back_or user
+      flash[:notice] = 'You have successfully signed in!'
+      redirect_back_or root_path
     else
       flash.now[:signin_error] = 'Incorrect Username or Password!'
       render 'new'
@@ -15,6 +16,7 @@ class SessionsController < ApplicationController
 
   def destroy
     sign_out
+    flash[:info] = 'You are now signed out'
     redirect_to root_url
   end
 end

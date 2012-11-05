@@ -29,6 +29,8 @@ describe "Authentication" do
       it { should_not have_link('Sign in', href: signin_path) }
       it { should have_content("Welcome, #{user.username}")}
       it { should have_link('Sign out', href: signout_path) }
+      it { should have_selector('div.alert.alert-success', text: "You have successfully signed in!") }
+      it { current_path.should == root_path }
     end
 
     describe "with invalid credentials" do
@@ -50,6 +52,7 @@ describe "Authentication" do
 
     it { should_not have_link('Sign out', href: signout_path) }
     it { should have_link('Sign in', href: signin_path)}
+    it { should have_selector('div.alert.alert-info', text: "You are now signed out") }
     it { current_path.should == root_path }
   end
 end
