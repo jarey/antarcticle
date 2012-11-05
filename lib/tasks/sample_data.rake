@@ -10,8 +10,8 @@ def make_users
   User.create!(username: "user_1")
 
   10.times do |n|
-    name = Faker::Name.name
-    User.create!(name: name)
+    username = Faker::Name.name
+    User.create!(username: username)
   end
 end
 
