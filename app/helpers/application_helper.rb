@@ -23,7 +23,8 @@ module ApplicationHelper
         :filter_html        => true,
         :safe_links_only    => true,
         :hard_wrap          => true,
-        :no_intra_emphasis  => true
+        :no_intra_emphasis  => true,
+        :tables             => true
     }
     redcarpet = Redcarpet::Markdown.new(renderer, options)
     raw redcarpet.render text

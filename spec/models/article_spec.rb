@@ -32,11 +32,25 @@ describe Article do
     it { should_not be_valid }
   end
 
-  #describe "acessible attributes" do
-  #  it "should not allow access to user_id" do
-  #    expect do
-  #      Article.new(user_id: user.id)
-  #    end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
-  #  end
-  #end
+  describe "acessible attributes" do
+    it "should not allow access to user_id" do
+      expect do
+        Article.new(user_id: user.id)
+      end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
+    end
+  end
+
+  describe "order" do
+    before do
+      @article2 = user.articles.build(title: "Article title",
+                                      content: "Lorem ipsum",)
+      @article2.created_at = 1.minute.since
+      @article2.save
+      @article.save
+    end
+
+    it "should be ordered descendant by creation date" do
+      Article.all.index(@article2).should < Article.all.index(@article)
+    end
+  end
 end

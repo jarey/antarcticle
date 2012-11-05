@@ -27,8 +27,7 @@ describe "Articles" do
       describe "created article" do
         before { click_button "Post article" }
         it { current_path.should == article_path(1) }
-        #should have_selector('div.alert.alert-success', text: "Article was successfully created")
-        it { should have_content("Article was successfully created") }
+        it { should have_selector('div.alert.alert-success', text: "Article was successfully created") }
       end
     end
 
@@ -54,10 +53,31 @@ describe "Articles" do
     it { should have_content(I18n.l(article.created_at, :format => :long)) }
   end
 
-  describe "article with mardkdown" do
+  describe "article with markdown" do
     let(:article) { FactoryGirl.create(:article, user: user, content: "# Header") }
     before { visit article_path(article) }
 
     it { should have_selector('h1', text: "Header") }
+  end
+
+  describe "articles index" do
+    before do
+      FactoryGirl.create(:article, user: user, content: "Content1", title: "title1")
+      FactoryGirl.create(:article, user: user, content: "Content2", title: "title2")
+      visit articles_path
+    end
+
+    it "should render articles" do
+      Article.all.each do |item|
+        should have_selector("li##{item.id} h2", text: item.title)
+        should have_selector("li##{item.id}", text: item.content)
+        should have_selector("li##{item.id}", text: item.user.username)
+        should have_selector("li##{item.id}", text: I18n.l(item.created_at, :format => :long))
+      end
+    end
+
+    # TODO: test it for not signed in user
+    it { should have_link('Write article') }
+
   end
 end
