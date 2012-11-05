@@ -79,5 +79,17 @@ describe "Articles" do
     # TODO: test it for not signed in user
     it { should have_link('Write article') }
 
+    it { should_not have_selector("#pagination") }
+  end
+
+  describe "pagination" do
+    before do
+      20.times do |n|
+        FactoryGirl.create(:article, user: user, content: "Content#{n}", title: "title#{n}")
+      end
+      visit articles_path
+    end
+
+    it { should have_selector(".pagination") }
   end
 end
