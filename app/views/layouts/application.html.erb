@@ -10,15 +10,16 @@
   <![endif]-->
 </head>
 <body>
-    <%= render 'layouts/header' %>
+    <div id="container-all">
+        <%= render 'layouts/header' %>
 
-    <div class="container">
-      <%= render 'layouts/flash_messages' %>
+        <div id="main-container" class="container">
+          <%= render 'layouts/flash_messages' %>
 
-      <%= yield %>
+          <%= yield %>
+        </div>
 
+        <%= render 'layouts/footer' %>
     </div>
-
-    <%= render 'layouts/footer' %>
 </body>
 </html>
