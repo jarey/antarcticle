@@ -14,7 +14,7 @@ module ApplicationHelper
     raw(html)
   end
 
-  def markdown(text)
+  def markdown_render(text)
     require 'redcarpet'
     renderer = Redcarpet::Render::HTML.new
     options = {
@@ -27,6 +27,10 @@ module ApplicationHelper
         :tables             => true
     }
     redcarpet = Redcarpet::Markdown.new(renderer, options)
-    raw redcarpet.render text
+    redcarpet.render text
+  end
+
+  def markdown(text)
+    raw markdown_render text
   end
 end

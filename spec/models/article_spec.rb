@@ -12,6 +12,7 @@ describe Article do
   it { should respond_to(:user_id) }
   it { should respond_to(:user) }
   it { should respond_to(:created_at) }
+  it { should respond_to(:description) }
   its(:user) { should == user }
 
   it { should be_valid}
@@ -52,5 +53,14 @@ describe Article do
     it "should be ordered descendant by creation date" do
       Article.all.index(@article2).should < Article.all.index(@article)
     end
+  end
+
+  describe "description" do
+    before do
+      @article.content = Faker::Lorem::paragraph(10)
+      @article.save
+    end
+    its(:description) { should_not be_blank }
+    its(:description) { should have(300).characters }
   end
 end
