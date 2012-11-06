@@ -1,4 +1,6 @@
 class Article < ActiveRecord::Base
+  include ApplicationHelper
+
   attr_accessible :content, :title, :description
 
   belongs_to :user
