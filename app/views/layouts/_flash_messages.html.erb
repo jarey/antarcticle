@@ -1,0 +1,12 @@
+<div class="common-width common-offset">
+  <% flash.each do |key, value| %>
+      <% if [:notice, :error, :info].include? key %>
+          <% if key == :notice
+               key = :success
+             end %>
+          <%= content_tag(:div, class: "alert alert-#{key}") do %>
+              <a class="close" data-dismiss="alert" href="#">×</a> <%= value %>
+          <% end %>
+      <% end %>
+  <% end %>
+</div>
