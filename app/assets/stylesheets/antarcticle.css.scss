@@ -3,10 +3,34 @@
 @import "font-awesome";
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,700');
 
+
+// fix for icons in drop-down
+.icon-white,
+.nav-tabs > .active > a > [class^="icon-"],
+.nav-tabs > .active > a > [class*=" icon-"],
+.nav-pills > .active > a > [class^="icon-"],
+.nav-pills > .active > a > [class*=" icon-"],
+.nav-list > .active > a > [class^="icon-"],
+.nav-list > .active > a > [class*=" icon-"],
+.navbar-inverse .nav > .active > a > [class^="icon-"],
+.navbar-inverse .nav > .active > a > [class*=" icon-"],
+.dropdown-menu > li > a:hover > [class^="icon-"],
+.dropdown-menu > li > a:hover > [class*=" icon-"],
+.dropdown-menu > .active > a > [class^="icon-"],
+.dropdown-menu > .active > a > [class*=" icon-"] {
+  background-image: none;
+}
+
+
+html,
 body {
+  height: 100%;
   background-color: rgb(247, 247, 247);
   background-image: url("fabric_plaid.png");
+}
 
+hr {
+  border-color: rgb(200, 200, 200) -moz-use-text-color white;
 }
 
 .well2 {
@@ -28,50 +52,34 @@ h6 {
   font-family: "Josefin Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.page-header {
-  padding-bottom: 0px;
-  margin: 12px 0px;
-}
-
-.breadcrumb {
-  background-color: rgb(251, 251, 251);
-  box-shadow: 0px 1px 0px rgb(255, 255, 255) inset;
-  border: 1px solid rgb(221, 221, 221);
-}
-
-.article-details .well2 {
-  margin-bottom: 3px;
-}
-
-#articles {
-  margin: 5px 0px 10px 0px;
-}
-
-#articles li .well2 {
-  padding: 10px;
-  margin-bottom: 3px;
-}
-
-#articles .page-header h2 a {
-  @extend h2;
-}
 
 .footer {
   padding-top: 10px;
-  //margin-top: 40px;
   border-top: 1px solid rgb(229, 229, 229);
   background-color: rgb(235, 235, 235);
   box-shadow: inset 0 5px 5px -5px #000000;
   background: url("bg_tan_grid.png") repeat scroll center top transparent;
   font-family: "Josefin Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height:60px;
+
+  a {
+    color: rgb(51, 51, 51);
+  }
 }
-.footer a {
-  color: rgb(51, 51, 51);
+
+#container-all {
+  min-height: 100%;
+  position: relative;
+}
+
+#main-container {
+  padding-bottom: 100px;
 }
 
 .common-width {
-  //@extend span10;
-  //float: none;
   width: 970px;
 }
 
@@ -83,23 +91,34 @@ h6 {
   width: 970px;
 }
 
-.breadcrumb {
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-}
-//
-//#signin .input-prepend input {
-//  width: ;
-//}
-
-hr {
-  border-color: rgb(200, 200, 200) -moz-use-text-color white;
-}
-
 .centralized-inputs {
   text-align: center;
 }
 
-html, body { height: 100%;}
-#container-all { min-height: 100%; position: relative; }
-#main-container { padding-bottom: 100px; }
-.footer { position: absolute; bottom: 0; width: 100%; height:60px;}
+.page-header {
+  padding-bottom: 0px;
+  margin: 12px 0px;
+}
+
+.breadcrumb {
+  background-color: rgb(251, 251, 251);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgb(221, 221, 221);
+}
+
+.article-details .well2 {
+  margin-bottom: 3px;
+}
+
+#articles {
+  margin: 5px 0px 10px 0px;
+
+  li .well2 {
+    padding: 10px;
+    margin-bottom: 3px;
+  }
+
+  .page-header h2 a {
+    @extend h2;
+  }
+}
