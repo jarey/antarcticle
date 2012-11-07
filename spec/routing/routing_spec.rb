@@ -20,7 +20,7 @@ describe "routing" do
 
   describe "users routing" do
     it "should route to users#show" do
-      get("/users/1").should route_to("users#show", :id => "1")
+      get("/users/user1").should route_to("users#show", :username => "user1")
     end
   end
 

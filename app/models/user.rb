@@ -7,6 +7,10 @@ class User < ActiveRecord::Base
 
   validates_presence_of :username
 
+  def to_param
+    username
+  end
+
   private
 
   def create_remember_token

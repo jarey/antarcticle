@@ -1,13 +1,15 @@
 Antarcticle::Application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
-  resources :users, only: [:show]
+  #resources :users, only: [:show]
   resources :articles
 
   root :to => 'articles#index'
 
   match '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
+
+  match '/users/:username', to: 'users#show', as: 'user'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
