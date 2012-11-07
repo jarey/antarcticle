@@ -1,5 +1,5 @@
 <% if flash.any? %>
-    <div class="common-width common-offset">
+    <div class="span10 offset1 global-block">
       <% flash.each do |key, value| %>
           <% if [:notice, :error, :info].include? key %>
               <% if key == :notice
