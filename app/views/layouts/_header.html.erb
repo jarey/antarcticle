@@ -1,12 +1,14 @@
 <div class="navbar navbar-inverse nav">
   <div class="navbar-inner">
-    <div class="container common-width">
+    <div class="container">
       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <%= link_to "Antarcticle", root_path, class: "brand" %>
+      <%= link_to root_path, class: "brand" do %>
+        <i class="icon-book"></i> Antarcticle
+      <% end %>
       <div class="nav-collapse collapse">
         <ul class="nav">
           <li class="divider-vertical"></li>
@@ -26,13 +28,17 @@
                     <li class="divider"></li>
                     <li>
                       <%= link_to signout_path, method: "delete" do %>
-                          <i class="icon-off"></i> Sign out
+                          <i class="icon-signout"></i> Sign out
                       <% end %>
                     </li>
                   </ul>
                 </li>
             <% else %>
-                <li><%= link_to "Sign in", signin_path %></li>
+                <li>
+                  <%= link_to signin_path do %>
+                      <i class="icon-signin icon-white"></i> Sign in
+                  <% end %>
+                </li>
             <% end %>
           </ul>
         </div>

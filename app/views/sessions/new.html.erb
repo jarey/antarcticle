@@ -7,11 +7,28 @@
           <a class="close" data-dismiss="alert" href="#">×</a> <%= flash[:signin_error] %>
         </div>
     <% end %>
-    <%= form_for(:session, url: sessions_path) do |f| %>
-        <%= f.text_field :username, class: "span4", placeholder: "Username" %>
-        <%= f.password_field :password, class: "span4", placeholder: "Password" %>
+    <%= form_for(:session, url: sessions_path, html: {id: "signin"}) do |f| %>
 
-        <%= f.submit "Sign in", class: "btn btn-info btn-block" %>
+        <div class="centralized-inputs">
+            <div class="control-group">
+              <div class="controls">
+                <div class="input-prepend">
+                  <span class="add-on"><i class="icon-user"></i></span>
+                  <%= f.text_field :username, class: "span3", placeholder: "Username" %>
+                </div>
+              </div>
+            </div>
+            <div class="control-group">
+              <div class="controls">
+                <div class="input-prepend">
+                  <span class="add-on"><i class="icon-key"></i></span>
+                  <%= f.password_field :password, class: "span3", placeholder: "Password" %>
+                </div>
+              </div>
+            </div>
+          <%= f.submit "Sign in", class: "btn btn-info btn-large span3" %>
+        </div>
+
     <% end %>
   </div>
 

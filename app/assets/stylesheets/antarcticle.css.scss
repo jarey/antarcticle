@@ -1,9 +1,12 @@
 @import "bootstrap";
 @import "bootstrap-responsive";
+@import "font-awesome";
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,700');
 
 body {
   background-color: rgb(247, 247, 247);
+  background-image: url("fabric_plaid.png");
+
 }
 
 .well2 {
@@ -54,11 +57,16 @@ h6 {
 }
 
 .footer {
-  padding: 10px 0px;
+  padding-top: 10px;
   //margin-top: 40px;
   border-top: 1px solid rgb(229, 229, 229);
   background-color: rgb(235, 235, 235);
   box-shadow: inset 0 5px 5px -5px #000000;
+  background: url("bg_tan_grid.png") repeat scroll center top transparent;
+  font-family: "Josefin Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+.footer a {
+  color: rgb(51, 51, 51);
 }
 
 .common-width {
@@ -75,8 +83,23 @@ h6 {
   width: 970px;
 }
 
+.breadcrumb {
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+//
+//#signin .input-prepend input {
+//  width: ;
+//}
+
+hr {
+  border-color: rgb(200, 200, 200) -moz-use-text-color white;
+}
+
+.centralized-inputs {
+  text-align: center;
+}
 
 html, body { height: 100%;}
 #container-all { min-height: 100%; position: relative; }
-#main-container { padding-bottom: 120px; }
-.footer { position: absolute; bottom: 0; width: 100%; height:80px;}
+#main-container { padding-bottom: 100px; }
+.footer { position: absolute; bottom: 0; width: 100%; height:60px;}
