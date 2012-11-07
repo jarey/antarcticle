@@ -9,25 +9,7 @@
         </div>
     <% end %>
     <ul id="articles" class="unstyled">
-      <% @articles.each_with_index do |article, i| %>
-          <li id="<%= article.id %>">
-            <div class="well2">
-              <div class="page-header">
-                <h2><%= link_to article.title, article_path(article) %></h2>
-              </div>
-              <div class="content"><%= article.description %></div>
-              <%= link_to 'Read more', article_path(article), class: "btn btn-small pull-right" %>
-              <div class="clearfix"></div>
-            </div>
-            <ul class="breadcrumb">
-              <li><i class="icon-calendar "></i>&nbsp;<strong>Posted </strong><%= l article.created_at, :format => :long %> </li>
-              <li>&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon-user"></i>&nbsp;<strong>by </strong><%= link_to article.user.username, article.user %> </li>
-            </ul>
-            <!--<% if @articles.size-1 != i %>-->
-                <!--<hr />-->
-            <!--<% end %>-->
-          </li>
-      <% end %>
+      <%= render partial: 'article_feed_item', collection: @articles %>
     </ul>
     <%= will_paginate %>
   </div>

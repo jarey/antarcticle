@@ -122,3 +122,35 @@ h6 {
     @extend h2;
   }
 }
+
+ul.numbers {
+  list-style: none;
+  width: 105px;
+  padding-top: 7px;
+  margin-top: 0;
+  color: #676767;
+}
+
+ul.numbers li {
+  width: 95px;
+  float: left;
+  display: block;
+  padding-left: 8px;
+  height: 50px;
+  //border-right: 1px solid rgb(200, 200, 200);
+  border-left: 1px solid rgb(200, 200, 200);
+  text-transform: uppercase;
+}
+
+ul.numbers li strong {
+  color: #434343;
+  display: block;
+  font-size: 1.4em;
+  line-height: 1.1em;
+  font-weight: bold;
+}
+
+.nobrdr {
+  border: 0px none !important;
+}
+
