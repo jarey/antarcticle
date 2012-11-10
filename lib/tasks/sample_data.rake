@@ -21,7 +21,7 @@ def make_articles
   30.times do
     content = Faker::Lorem.paragraph(10)
     title = Faker::Name.title
-    tags = Tag.all.sample(4).join(",")
+    tags = Tag.all.sample(4).map(&:name).join(",")
     users.sample(1)[0].articles.create!(title: title, content: content, tag_list: tags)
   end
 end
