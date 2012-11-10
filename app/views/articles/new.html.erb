@@ -22,6 +22,10 @@
             <%= f.text_area :content, class: "span7", rows: 25, placeholder: "Enter article content here ..." %>
         <% end %>
 
+        <%= control_group @article, :tag_list do %>
+            <%= f.text_field :tag_list, class: "span7", placeholder: "Tags (separated by commas)" %>
+        <% end %>
+
         <%= f.submit "Post article", class: "btn btn-primary btn-large pull-right" %>
     <% end %>
   </div>

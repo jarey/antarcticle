@@ -9,7 +9,9 @@ Antarcticle::Application.routes.draw do
   match '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
 
-  match '/users/:username', to: 'users#show', as: 'user'
+  match '/users/:username', to: 'users#show', as: :user
+
+  get '/tags/:tag', to: 'articles#index', as: :tag
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

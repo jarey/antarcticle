@@ -24,6 +24,12 @@ describe "routing" do
     end
   end
 
+  describe "tags routing" do
+    it "should route to articles#index" do
+      get("/tags/tag1").should route_to("articles#index", :tag => "tag1")
+    end
+  end
+
   describe "articles routing" do
 
     it "routes to #index" do

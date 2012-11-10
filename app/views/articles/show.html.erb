@@ -3,16 +3,24 @@
 <div class="row">
   <div class="span10 offset1">
     <div class="article-details">
-      <div class="page-header" style="border-width: 0px;">
+      <div class="page-header nobrdr">
         <h2><%= @article.title %></h2>
       </div>
       <div class="well2">
         <%= markdown(@article.content) %>
       </div>
       <ul class="breadcrumb">
-        <li><i class="icon-calendar "></i>&nbsp;<strong>Posted </strong><%= l @article.created_at, :format => :long %> </li>
+        <li><i class="icon-calendar"></i>&nbsp;<strong>Posted </strong><%= l @article.created_at, :format => :long %> </li>
         <li>&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon-user"></i>&nbsp;<strong>by </strong><%= link_to @article.user.username, @article.user %> </li>
       </ul>
+      <div class="tags">
+        <i class="icon-tags"></i>&nbsp;<strong>Tags:</strong>&nbsp;
+        <% if @article.tags.any? %>
+          <%= raw @article.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %>
+        <% else %>
+          none
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
