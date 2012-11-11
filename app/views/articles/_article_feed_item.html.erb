@@ -4,7 +4,7 @@
       <h2><%= link_to article_feed_item.title, article_path(article_feed_item) %></h2>
     </div>
     <div class="content"><%= article_feed_item.description %></div>
-    <%= link_to 'Read more', article_path(article_feed_item), class: "btn btn-small pull-right" %>
+    <%= link_to 'Read more', article_path(article_feed_item), class: "btn btn-small pull-right read-more" %>
     <div class="clearfix"></div>
   </div>
   <ul class="breadcrumb">

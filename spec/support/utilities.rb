@@ -6,9 +6,9 @@ RSpec::Matchers.define :have_error_message do |message|
   end
 end
 
-RSpec::Matchers.define :have_placeholder do |placeholder|
+RSpec::Matchers.define :have_placeholder do |placeholder, *args|
   match do |page|
-    page.should have_selector("input[placeholder='#{placeholder}'], textarea[placeholder='#{placeholder}']")
+    page.should have_selector("input[placeholder='#{placeholder}'], textarea[placeholder='#{placeholder}']", *args)
   end
 end
 

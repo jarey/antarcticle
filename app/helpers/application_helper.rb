@@ -14,15 +14,21 @@ module ApplicationHelper
     raw(html)
   end
 
+  #class HTMLWithCodeHighlightRender < Redcarpet::Render::HTML
+    #def block_code(code, language)
+     ## render
+    #end
+  #end
+
   def markdown_render(text)
     require 'redcarpet'
-    renderer = Redcarpet::Render::HTML.new
+    renderer = Redcarpet::Render::HTML.new(hard_wrap: true, filter_html: true)
     options = {
         :fenced_code_blocks => true,
         :autolink           => true,
-        :filter_html        => true,
         :safe_links_only    => true,
-        :hard_wrap          => true,
+        :strikethrough      => true,
+        :lax_spacing        => true,
         :no_intra_emphasis  => true,
         :tables             => true
     }
@@ -31,6 +37,6 @@ module ApplicationHelper
   end
 
   def markdown(text)
-    raw markdown_render text
+    markdown_render(text).html_safe
   end
 end

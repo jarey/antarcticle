@@ -45,6 +45,26 @@ describe "Articles" do
     end
   end
 
+  describe "editing article" do
+    let(:article) { FactoryGirl.create(:article, user: user, tag_list: "tag1,tag2") }
+    before { visit edit_article_path(article) }
+
+    it { should have_selector('h2', text: "Editing article") }
+    it { should have_placeholder('Enter article content here ...', text: article.content) }
+    it { should have_placeholder('Article title', text: article.title) }
+    it { should have_placeholder("Tags (separated by commas)", text: article.tag_list) }
+    it { should have_button('Edit article') }
+
+      it "should not create new article" do
+        expect { click_button "Edit article" }.not_to change(Article, :count)
+      end
+    describe "created article" do
+      before { click_button "Edit article" }
+      it { current_path.should == article_path(1) }
+      it { should have_selector('div.alert.alert-success', text: "Article was successfully updated") }
+    end
+  end
+
   describe "article details" do
     let(:article) { FactoryGirl.create(:article, user: user, tag_list: "tag1,tag2") }
     before { visit article_path(article) }
@@ -53,6 +73,7 @@ describe "Articles" do
     it { should have_content(article.content) }
     it { should have_link(user.username) }
     it { should have_content(I18n.l(article.created_at, :format => :long)) }
+    it { should have_link("Edit", href: edit_article_path(article)) }
     it "should have tags as links" do
       %w[tag1 tag2].each do |tag|
         should have_link(tag)
