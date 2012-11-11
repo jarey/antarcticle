@@ -9,6 +9,8 @@ end
 
 def make_users
   User.create!(username: "user_1")
+  admin = User.create!(username: "admin")
+  admin.toggle!(:admin)
 
   10.times do |n|
     username = Faker::Internet.user_name

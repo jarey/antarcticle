@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121110150044) do
+ActiveRecord::Schema.define(:version => 20121111145813) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -40,9 +40,10 @@ ActiveRecord::Schema.define(:version => 20121110150044) do
 
   create_table "users", :force => true do |t|
     t.string   "username"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.string   "remember_token"
+    t.boolean  "admin",          :default => false
   end
 
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"

@@ -55,9 +55,10 @@ describe "Articles" do
     it { should have_placeholder("Tags (separated by commas)", text: article.tag_list) }
     it { should have_button('Edit article') }
 
-      it "should not create new article" do
-        expect { click_button "Edit article" }.not_to change(Article, :count)
-      end
+    it "should not create new article" do
+      expect { click_button "Edit article" }.not_to change(Article, :count)
+    end
+
     describe "created article" do
       before { click_button "Edit article" }
       it { current_path.should == article_path(1) }

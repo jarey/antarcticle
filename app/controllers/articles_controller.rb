@@ -3,6 +3,7 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
     @articles = Article.paginate(page: params[:page], per_page: 10)
+    authorize! :read, Article
 
     respond_to do |format|
       format.html # index.html.erb
@@ -14,6 +15,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1.json
   def show
     @article = Article.find(params[:id])
+    authorize! :read, @article
 
     respond_to do |format|
       format.html # show.html.erb
@@ -25,6 +27,7 @@ class ArticlesController < ApplicationController
   # GET /articles/new.json
   def new
     @article = Article.new
+    authorize! :create, Article
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,12 +38,14 @@ class ArticlesController < ApplicationController
   # GET /articles/1/edit
   def edit
     @article = Article.find(params[:id])
+    authorize! :update, @article
   end
 
   # POST /articles
   # POST /articles.json
   def create
     @article = current_user.articles.build(params[:article])
+    authorize! :create, Article
     respond_to do |format|
       if @article.save
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
@@ -56,6 +61,7 @@ class ArticlesController < ApplicationController
   # PUT /articles/1.json
   def update
     @article = Article.find(params[:id])
+    authorize! :update, @article
 
     respond_to do |format|
       if @article.update_attributes(params[:article])
@@ -72,6 +78,7 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1.json
   def destroy
     @article = Article.find(params[:id])
+    authorize! :destroy, @article
     @article.destroy
 
     respond_to do |format|

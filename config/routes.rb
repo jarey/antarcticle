@@ -10,6 +10,7 @@ Antarcticle::Application.routes.draw do
   match '/signout', to: 'sessions#destroy', via: :delete
 
   match '/users/:username', to: 'users#show', as: :user
+#:constraints => { :username => /[^\/]+(?=\.html\z|\.json\z)|[^\/]+/ }
 
   get '/tags/:tag', to: 'articles#index', as: :tag
 

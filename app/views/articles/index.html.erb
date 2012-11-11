@@ -1,12 +1,12 @@
 <div class="row">
   <div class="span10 offset1">
-    <% if signed_in? %>
-        <div>
-          <%= link_to new_article_path, class: "btn btn-large btn-primary pull-right" do %>
-              <i class="icon-pencil icon-white"></i> Write article
-          <% end %>
-          <div class="clearfix"></div>
-        </div>
+    <% if can? :create, Article %>
+      <div>
+        <%= link_to new_article_path, class: "btn btn-large btn-primary pull-right" do %>
+          <i class="icon-pencil icon-white"></i> Write article
+        <% end %>
+        <div class="clearfix"></div>
+      </div>
     <% end %>
     <ul id="articles" class="unstyled">
       <%= render partial: 'article_feed_item', collection: @articles %>

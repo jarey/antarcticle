@@ -2,13 +2,15 @@
   <div class="span10 offset1">
     <div class="article-details">
 
-      <div class="clearfix" style="line-height: 50px">
+      <div class="clearfix" style="line-height: 60px">
         <div class="pull-left">
           <h2><%= @article.title %></h2>
         </div>
         <div class="pull-right">
-          <%= link_to edit_article_path(@article), class: "btn btn-info" do %>
-            <i class="icon-edit"></i> Edit
+          <% if can? :update, @article %>
+            <%= link_to edit_article_path(@article), class: "btn btn-info" do %>
+              <i class="icon-edit"></i> Edit
+            <% end %>
           <% end %>
         </div>
       </div>
