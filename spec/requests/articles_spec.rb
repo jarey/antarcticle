@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe "Articles" do
+describe "Article" do
   subject { page }
 
   let(:user) { FactoryGirl.create(:user) }
   before { sign_in user }
 
-  describe "article creation" do
+  describe "creation" do
     before { visit new_article_path }
 
     it { should have_selector('h2', text: "New article") }
@@ -22,11 +22,11 @@ describe "Articles" do
         fill_in_placeholder 'Tags (separated by commas)', "tag1, tag2"
       end
 
-      it "should create an article" do
+      it "should be created" do
         expect { click_button "Post article" }.to change(Article, :count).by(1)
       end
 
-      describe "created article" do
+      describe "created" do
         before { click_button "Post article" }
         it { current_path.should == article_path(1) }
         it { should have_selector('div.alert.alert-success', text: "Article was successfully created") }
@@ -45,28 +45,28 @@ describe "Articles" do
     end
   end
 
-  describe "editing article" do
+  describe "editing" do
     let(:article) { FactoryGirl.create(:article, user: user, tag_list: "tag1,tag2") }
     before { visit edit_article_path(article) }
 
     it { should have_selector('h2', text: "Editing article") }
     it { should have_placeholder('Enter article content here ...', text: article.content) }
-    it { should have_placeholder('Article title', text: article.title) }
-    it { should have_placeholder("Tags (separated by commas)", text: article.tag_list) }
+    it { should have_placeholder('Article title', value: article.title) }
+    it { should have_placeholder("Tags (separated by commas)", value: article.tag_list) }
     it { should have_button('Edit article') }
 
-    it "should not create new article" do
+    it "should not be created" do
       expect { click_button "Edit article" }.not_to change(Article, :count)
     end
 
-    describe "created article" do
+    describe "updated" do
       before { click_button "Edit article" }
       it { current_path.should == article_path(1) }
       it { should have_selector('div.alert.alert-success', text: "Article was successfully updated") }
     end
   end
 
-  describe "article details" do
+  describe "details" do
     let(:article) { FactoryGirl.create(:article, user: user, tag_list: "tag1,tag2") }
     before { visit article_path(article) }
 
@@ -82,14 +82,14 @@ describe "Articles" do
     end
   end
 
-  describe "article with markdown" do
+  describe "with markdown" do
     let(:article) { FactoryGirl.create(:article, user: user, content: "# Header") }
     before { visit article_path(article) }
 
     it { should have_selector('h1', text: "Header") }
   end
 
-  describe "articles index" do
+  describe "index" do
     before do
       FactoryGirl.create(:article, user: user, content: "Content1", title: "title1")
       FactoryGirl.create(:article, user: user, content: "Content2", title: "title2")

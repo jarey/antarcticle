@@ -11,12 +11,14 @@ describe "User" do
       visit user_path(user)
     end
 
-    it { should have_content(user.username) }
-    it { should have_content("no articles") }
-    it { should have_link("Write article") }
-    it { should have_selector('strong', text: "0")}
+    describe "is empty" do
+      it { should have_content(user.username) }
+      it { should have_content("no articles") }
+      it { should have_link("Write article") }
+      it { should have_selector('strong', text: "0")}
+    end
 
-    describe "articles" do
+    describe "is not empty" do
       before do
         @article = FactoryGirl.create(:article, user: user)
         visit user_path(user)
