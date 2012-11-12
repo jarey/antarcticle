@@ -19,7 +19,7 @@
         <%= markdown(@article.content) %>
       </div>
       <ul class="breadcrumb">
-        <li><i class="icon-calendar"></i>&nbsp;<strong>Posted </strong><%= l @article.created_at, :format => :long %> </li>
+        <li><i class="icon-calendar"></i>&nbsp;<strong>Posted </strong><%= l @article.created_at, format: :long %> </li>
         <li>&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon-user"></i>&nbsp;<strong>by </strong><%= link_to @article.user.username, @article.user %> </li>
       </ul>
       <div class="tags">

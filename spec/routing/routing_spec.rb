@@ -20,13 +20,13 @@ describe "routing" do
 
   describe "users routing" do
     it "should route to users#show" do
-      get("/users/user1").should route_to("users#show", :username => "user1")
+      get("/users/user1").should route_to("users#show", username: "user1")
     end
   end
 
   describe "tags routing" do
     it "should route to articles#index" do
-      get("/tags/tag1").should route_to("articles#index", :tag => "tag1")
+      get("/tags/tag1").should route_to("articles#index", tag: "tag1")
     end
   end
 
@@ -41,11 +41,11 @@ describe "routing" do
     end
 
     it "routes to #show" do
-      get("/articles/1").should route_to("articles#show", :id => "1")
+      get("/articles/1").should route_to("articles#show", id: "1")
     end
 
     it "routes to #edit" do
-      get("/articles/1/edit").should route_to("articles#edit", :id => "1")
+      get("/articles/1/edit").should route_to("articles#edit", id: "1")
     end
 
     it "routes to #create" do
@@ -53,11 +53,11 @@ describe "routing" do
     end
 
     it "routes to #update" do
-      put("/articles/1").should route_to("articles#update", :id => "1")
+      put("/articles/1").should route_to("articles#update", id: "1")
     end
 
     it "routes to #destroy" do
-      delete("/articles/1").should route_to("articles#destroy", :id => "1")
+      delete("/articles/1").should route_to("articles#destroy", id: "1")
     end
 
   end
