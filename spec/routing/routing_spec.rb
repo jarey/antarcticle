@@ -21,12 +21,15 @@ describe "routing" do
   describe "users routing" do
     it "should route to users#show" do
       get("/users/user1").should route_to("users#show", username: "user1")
+      get("/users/user.1").should route_to("users#show", username: "user.1")
+      get("/users/u$er@").should route_to("users#show", username: "u$er@")
     end
   end
 
   describe "tags routing" do
     it "should route to articles#index" do
       get("/tags/tag1").should route_to("articles#index", tag: "tag1")
+      get("/tags/node.js").should route_to("articles#index", tag: "node.js")
     end
   end
 
