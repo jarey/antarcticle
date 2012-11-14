@@ -4,11 +4,11 @@
 #
 
 $ ->
-  $('pre code').each (i, el) =>
+  $('pre > code').each (i, el) =>
+    # language specific class
+    lang = $(el).attr('class')
     # add classes for highlighting and line numbers
-    $(el).parent().addClass('prettyprint').addClass('linenums')
-    # add class for language highlighting extension
-    $(el).attr('class', 'lang-' + $(el).attr('class'))
+    $(el).parent().addClass('prettyprint').addClass('linenums').addClass('lang-' + lang)
 
   # turn on highlighting
   prettyPrint()
