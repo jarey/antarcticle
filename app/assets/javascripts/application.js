@@ -14,3 +14,16 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
+
+$(function() {
+  $('pre code').each(function(i) {
+    // add classes for highlighting and line numbers
+    $(this).parent().addClass('prettyprint').addClass('linenums')
+    // add class for language highlighting extension
+    var cls = $(this).attr('class')
+    $(this).attr('class', 'lang-' + cls)
+  });
+
+  // turn on highlighting
+  prettyPrint();
+});

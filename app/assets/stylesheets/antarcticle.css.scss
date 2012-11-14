@@ -52,6 +52,12 @@ h6 {
   font-family: "Josefin Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+pre {
+  overflow: auto;
+  word-wrap: normal;
+  white-space: pre;
+}
+
 .global-block {
   float: none;
   margin: 0 auto;
