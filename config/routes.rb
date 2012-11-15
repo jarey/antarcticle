@@ -1,7 +1,6 @@
 Antarcticle::Application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
-  #resources :users, only: [:show]
   resources :articles
 
   root :to => 'articles#index'
@@ -11,6 +10,6 @@ Antarcticle::Application.routes.draw do
 
   match '/users/:username', to: 'users#show', as: :user, :username => /[^\/]*/
 
-  get '/tags/:tag', to: 'articles#index', as: :tag, :tag => /[^\/]*/
+  match '/tags/:tag', to: 'tags#index', as: :tag, :tag => /[^\/]*/
 
 end

@@ -27,9 +27,9 @@ describe "routing" do
   end
 
   describe "tags routing" do
-    it "should route to articles#index" do
-      get("/tags/tag1").should route_to("articles#index", tag: "tag1")
-      get("/tags/node.js").should route_to("articles#index", tag: "node.js")
+    it "should route to tags#index" do
+      get("/tags/tag1").should route_to("tags#index", tag: "tag1")
+      get("/tags/node.js").should route_to("tags#index", tag: "node.js")
     end
   end
 
