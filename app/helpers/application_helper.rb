@@ -33,4 +33,10 @@ module ApplicationHelper
   def markdown(text)
     markdown_render(text).html_safe
   end
+
+  def yield_for(content_sym, default)
+    output = content_for(content_sym)
+    output = default if output.blank?
+    output
+  end
 end
