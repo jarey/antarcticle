@@ -1,6 +1,8 @@
 FactoryGirl.define do
   factory :user do
     sequence(:username) { |n| "user#{n}" }
+    sequence(:first_name) { |n| "John#{n}" }
+    sequence(:last_name) { |n| "Smith#{n}" }
 
     factory :admin do
       admin true

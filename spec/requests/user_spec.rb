@@ -11,7 +11,21 @@ describe "User" do
       visit user_path(user)
     end
 
-    it { should have_content(user.username) }
+    describe "header" do
+      it { should have_content(user.username) }
+
+      context "user with filled first and last name" do
+        it { should have_selector('.name') }
+        it { should have_content(user.first_name) }
+        it { should have_content(user.last_name) }
+      end
+
+      context "user with not filled first and last name" do
+        let(:user) { FactoryGirl.create(:user, first_name: nil, last_name: nil) }
+
+        it { should_not have_selector('.name') }
+      end
+    end
 
     context "is empty" do
       it { should have_content("no articles") }

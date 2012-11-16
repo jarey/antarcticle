@@ -8,7 +8,7 @@ $ ->
     # language specific class
     lang = $(el).attr('class')
     # add classes for highlighting and line numbers
-    $(el).parent().addClass('prettyprint').addClass('linenums').addClass('lang-' + lang)
+    $(el).parent().addClass('prettyprint').addClass('linenums').addClass("lang-#{lang}")
 
   # turn on highlighting
   prettyPrint()

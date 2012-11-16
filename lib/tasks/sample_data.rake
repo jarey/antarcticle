@@ -8,18 +8,26 @@ namespace :db do
 end
 
 def make_users
-  User.create!(username: "user_1")
-  admin = User.create!(username: "admin")
-  admin.toggle!(:admin)
+  update_user("user_1", ["John", "Smith"])
+  admin = update_user("admin")
+  admin.admin = true
+  admin.save
 
   10.times do |n|
+    name = Faker::Name.name.split(" ")
     username = Faker::Internet.user_name
-    User.create!(username: username)
+    update_user(username, name)
   end
 end
 
+def update_user(username, name)
+  user = User.find_by_username(username) || User.new(username: username)
+  user.update_attributes!(first_name: name[0], last_name: name[1])
+  user
+end
+
 def make_articles
-  users = User.all(limit: 4)
+  users = User.all.sample(5)
   30.times do
     content = Faker::Lorem.paragraph(10)
     title = Faker::Name.title

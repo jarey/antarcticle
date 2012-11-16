@@ -1,10 +1,13 @@
 <% content_for(:title, "User: #{@user.username}") %>
 <div class="row">
   <div class="span10 offset1">
-    <div class="clearfix">
+    <div class="clearfix profile-header">
 
       <div class="pull-left">
-        <h2><i class="icon-user"></i> <%= @user.username %></h2>
+        <h2 class="username"><i class="icon-user"></i> <%= @user.username %></h2>
+        <% if @user.first_name || @user.last_name %>
+          <h3 class="name">(<%= @user.first_name %> <%= @user.last_name %>)</h3>
+        <% end %>
       </div>
 
       <div class="pull-right">
