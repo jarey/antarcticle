@@ -1,8 +1,7 @@
 @import "bootstrap";
 @import "bootstrap-responsive";
 @import "font-awesome";
-@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,700');
-
+@import url('http://fonts.googleapis.com/css?family=Ubuntu:400,300&subset=latin,cyrillic');
 
 // fix for icons in drop-down
 .icon-white,
@@ -49,7 +48,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Josefin Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Ubuntu", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
 }
 
 pre {
