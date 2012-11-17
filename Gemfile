@@ -6,7 +6,8 @@ gem "faker", "~> 1.1.2"
 gem 'redcarpet', '2.2.2'
 gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.9'
-gem 'cancan'
+gem 'cancan', '1.6.8'
+gem 'acts-as-taggable-on', '2.3.3'
 
 group :production do
   gem 'mysql2'

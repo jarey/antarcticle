@@ -178,3 +178,17 @@ ul.numbers {
   border: 0px none !important;
 }
 
+ul.header-tags {
+  list-style-type:none;
+  margin:0;
+  padding:0;
+
+  li {
+    @extend h2;
+    display: inline;
+  }
+
+  li:not(:first-child) {
+    padding-left: 5px;
+  }
+}

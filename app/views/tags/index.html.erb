@@ -1,9 +1,13 @@
-<% content_for(:title, "Tag: #{@tag.name}")  %>
+<% content_for(:title, "Tags: #{@tags_names}") %>
 <div class="row">
   <div class="span10 offset1">
     <div class="clearfix">
       <div class="pull-left">
-        <h2><i class="icon-tag"></i> <%= @tag.name %></h2>
+        <ul class="header-tags">
+          <% @tags_names.each do |tag| %>
+            <li><i class="icon-tag"></i><%= tag %></li>
+          <% end %>
+        </ul>
       </div>
     </div>
     <% if @articles.any? %>

@@ -28,8 +28,10 @@ describe "routing" do
 
   describe "tags routing" do
     it "should route to tags#index" do
-      get("/tags/tag1").should route_to("tags#index", tag: "tag1")
-      get("/tags/node.js").should route_to("tags#index", tag: "node.js")
+      get("/tags/tag1").should route_to("tags#index", tags: "tag1")
+      get("/tags/node.js").should route_to("tags#index", tags: "node.js")
+      get("/tags/tag1+tag2").should route_to("tags#index", tags: "tag1+tag2")
+      get("/tags/tag.1+tag.2").should route_to("tags#index", tags: "tag.1+tag.2")
     end
   end
 
