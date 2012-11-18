@@ -21,9 +21,11 @@ def make_users
 end
 
 def update_user(username, name)
-  user = User.find_by_username(username) || User.new(username: username)
-  user.update_attributes!(first_name: name[0], last_name: name[1])
-  user
+  User.find_or_initialize_by_username(username).tap do |u|
+    u.first_name = name[0]
+    u.last_name = name[1]
+    u.save!
+  end
 end
 
 def make_articles

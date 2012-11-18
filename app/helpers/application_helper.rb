@@ -1,17 +1,12 @@
 module ApplicationHelper
 
   def control_group(resource, field, &block)
-    html = ""
-    if resource.errors[field].present?
-      html << '<div class="control-group error">'
-    else
-      html << '<div class="control-group">'
+    error_class = " error" if resource.errors[field].present?
+    content_tag :div, class: "control-group #{error_class}" do
+      content_tag :div, class: "controls" do
+        capture(&block)
+      end
     end
-    html << '<div class="controls">'
-    html << capture(&block)
-    html << "</div>"
-    html << "</div>"
-    raw(html)
   end
 
   def markdown_render(text)

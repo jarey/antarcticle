@@ -19,7 +19,7 @@
     </div>
     <% if @user_articles.any? %>
         <ul id="articles" class="unstyled">
-          <%= render partial: 'articles/article_feed_item', collection: @user_articles %>
+          <%= render @user_articles %>
         </ul>
         <%= will_paginate @user_articles %>
     <% else %>
