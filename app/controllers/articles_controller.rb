@@ -25,8 +25,7 @@ class ArticlesController < ApplicationController
     authorize! :create, Article
 
     if @article.save
-      flash[:notice] = 'Article was successfully created.'
-      redirect_to @article
+      redirect_to @article, notice: 'Article was successfully created.'
     else
       render action: "new"
     end
@@ -37,8 +36,7 @@ class ArticlesController < ApplicationController
     authorize! :update, @article
 
     if @article.update_attributes(params[:article])
-      flash[:notice] = 'Article was successfully updated.'
-      redirect_to @article
+      redirect_to @article, notice: 'Article was successfully updated.'
     else
       render action: "edit"
     end
