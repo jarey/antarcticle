@@ -5,6 +5,10 @@ class TagsController < ApplicationController
     authorize! :read, Article
   end
 
+  def filter
+    redirect_to tag_path(params[:tags])
+  end
+
   private
   def get_tags_names(params_string)
     params_string.split(",").each { |t| t.strip }

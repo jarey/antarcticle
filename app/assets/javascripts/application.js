@@ -32,4 +32,5 @@
 //= require prettify/lang-wiki
 //= require prettify/lang-xq
 //= require prettify/lang-yaml
+//= require jquery.tagsinput.js
 //= require_tree .

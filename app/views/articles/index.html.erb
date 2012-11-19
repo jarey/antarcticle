@@ -1,6 +1,12 @@
 <% content_for(:title, "Articles") %>
 <div class="row">
   <div class="span10 offset1">
+
+    <%= form_tag tags_filter_path, method: :get do %>
+      <%= text_field_tag :tags, params[:tags], class: "span7", id: "tags_filter", placeholder: "Tags filter" %> 
+      <%= submit_tag 'Find', name: nil, class: "btn btn-info" %>
+    <% end %>
+
     <% if can? :create, Article %>
       <div>
         <%= link_to new_article_path, class: "btn btn-large btn-primary pull-right" do %>

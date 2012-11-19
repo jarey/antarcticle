@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.8'
-
+# jquery
+gem 'jquery-rails'
 # sass version of twitter bootstrap
 gem "bootstrap-sass", "~> 2.1.1.0"
 # fake data generator for filling database
@@ -18,26 +19,29 @@ gem 'cancan', '1.6.8'
 gem 'acts-as-taggable-on', '2.3.3'
 
 group :production do
-  # db driver
+  # production db driver
   gem 'mysql2'
 end
 
 group :development, :test do
-  # development db
+  # development and testing db driver
   gem 'sqlite3', '1.3.5'
   # testing with rspecs
   gem 'rspec-rails', '2.11.0'
-  # deployment scripting
-  gem 'capistrano'
-  gem 'rvm-capistrano'
-  # running tests more fast
+  # running tests faster
   gem 'spork-rails'
+end
+
+group :development do
   # n+1 and other db performance issues detector
   gem 'bullet'
   # mutes assets pipeline log messages
   gem 'quiet_assets'
   # better server for development
   gem 'thin'
+  # deployment scripting
+  gem 'capistrano'
+  gem 'rvm-capistrano'
 end
 
 group :test do
@@ -63,5 +67,3 @@ group :assets do
   gem 'therubyracer'
 end
 
-# jquery
-gem 'jquery-rails'
