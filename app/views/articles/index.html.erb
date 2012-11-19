@@ -2,19 +2,23 @@
 <div class="row">
   <div class="span10 offset1">
 
-    <%= form_tag tags_filter_path, method: :get do %>
-      <%= text_field_tag :tags, params[:tags], class: "span7", id: "tags_filter", placeholder: "Tags filter" %> 
-      <%= submit_tag 'Find', name: nil, class: "btn btn-info" %>
-    <% end %>
-
-    <% if can? :create, Article %>
-      <div>
-        <%= link_to new_article_path, class: "btn btn-large btn-primary pull-right" do %>
-          <i class="icon-pencil icon-white"></i> Write article
+    <div class="clearfix">
+      <div class="pull-left span8" style="line-height:41px;">
+        <%= form_tag tags_filter_path, method: :get do %>
+          <%= text_field_tag :tags, params[:tags], class: "span7", id: "tags_filter", placeholder: "Tags filter" %> 
+          <%= submit_tag 'Find', name: nil, class: "btn btn-info" %>
         <% end %>
-        <div class="clearfix"></div>
       </div>
-    <% end %>
+
+      <% if can? :create, Article %>
+        <div class="pull-right">
+          <%= link_to new_article_path, class: "btn btn-large btn-primary pull-right" do %>
+            <i class="icon-pencil icon-white"></i> Write article
+          <% end %>
+          <div class="clearfix"></div>
+        </div>
+      <% end %>
+    </div>
     <ul id="articles" class="unstyled">
       <%= render @articles %>
     </ul>
