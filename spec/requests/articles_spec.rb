@@ -9,7 +9,7 @@ describe "Article" do
   describe "creation" do
     before { visit new_article_path }
 
-    describe "form" do
+    describe "form elements" do
       it { should have_selector('h2', text: "New article") }
       it { should have_placeholder('Enter article content here ...') }
       it { should have_placeholder('Article title') }
@@ -62,6 +62,7 @@ describe "Article" do
     describe "form" do
       it { should have_selector('h2', text: "Editing article") }
       it { should have_button('Edit article') }
+
       it "should have fields filled with article data" do
         should have_placeholder('Enter article content here ...', text: article.content)
         should have_placeholder('Article title', value: article.title)
@@ -126,8 +127,16 @@ describe "Article" do
 
   describe "index" do
     before do
-      FactoryGirl.create(:article, user: user, content: "Content1", title: "title1")
-      FactoryGirl.create(:article, user: user, content: "Content2", title: "title2")
+      FactoryGirl.create(:article,
+                         user:     user,
+                         content:  "Content1",
+                         title:    "title1",
+                         tag_list: "tag1,tag2")
+      FactoryGirl.create(:article,
+                         user:     user,
+                         content:  "Content2",
+                         title:    "title2",
+                         tag_list: "tag1,tag2")
       visit articles_path
     end
 
@@ -158,7 +167,10 @@ describe "Article" do
     context "with many articles" do
       before do
         20.times do |n|
-          FactoryGirl.create(:article, user: user, content: "Content#{n}", title: "title#{n}")
+          FactoryGirl.create(:article,
+                             user:    user,
+                             content: "Content#{n}",
+                             title:   "title#{n}")
         end
         visit articles_path
       end
@@ -166,6 +178,22 @@ describe "Article" do
       it "should be paginated" do
         should have_selector(".pagination")
       end
+    end
+
+    describe "tags filter" do
+       before :each do
+         fill_in 'tags_filter', with: "tag1,tag2"
+         click_button "Find"
+       end
+
+       it "should be at tags page" do
+          current_path.should == tag_path("tag1,tag2") 
+       end
+
+       it "should open filter results" do
+         should have_content "tag1"
+         should have_content "tag2"
+       end
     end
   end
 
