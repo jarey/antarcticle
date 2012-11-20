@@ -5,7 +5,7 @@
     <div class="clearfix">
       <div class="pull-left span8" style="line-height:41px;">
         <%= form_tag tags_filter_path, method: :get do %>
-          <%= text_field_tag :tags, params[:tags], class: "span7", id: "tags_filter", placeholder: "Tags filter" %> 
+          <%= text_field_tag :tags, params[:tags], class: "span7", id: "tags_filter", placeholder: "Tags filter" %>
           <%= submit_tag 'Find', name: nil, class: "btn btn-info" %>
         <% end %>
       </div>

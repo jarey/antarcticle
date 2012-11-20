@@ -6,7 +6,7 @@ gem 'jquery-rails'
 # sass version of twitter bootstrap
 gem "bootstrap-sass", "~> 2.1.1.0"
 # fake data generator for filling database
-gem "faker", "~> 1.1.2"
+gem "ffaker"
 # markdown processor
 gem 'redcarpet', '2.2.2'
 # serving pagination

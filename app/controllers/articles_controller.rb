@@ -25,9 +25,9 @@ class ArticlesController < ApplicationController
     authorize! :create, Article
 
     if @article.save
-      redirect_to @article, notice: 'Article was successfully created.'
+      redirect_to @article, only_path: true, notice: 'Article was successfully created.'
     else
-      render action: "new"
+      render 'new'
     end
   end
 
@@ -38,7 +38,7 @@ class ArticlesController < ApplicationController
     if @article.update_attributes(params[:article])
       redirect_to @article, notice: 'Article was successfully updated.'
     else
-      render action: "edit"
+      render 'edit'
     end
   end
 

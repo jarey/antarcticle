@@ -1,4 +1,5 @@
 <% content_for(:title, "Editing article") %>
 <%= render 'form',
+  article: @article,
   form_legend: '<i class="icon-edit"></i> Editing article',
   submit_text: 'Edit article' %>

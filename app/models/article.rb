@@ -13,6 +13,10 @@ class Article < ActiveRecord::Base
 
   default_scope order: 'articles.created_at DESC'
 
+  def author_name
+    user.username
+  end
+
   private
   def create_description
     self.description = helpers.truncate(helpers.strip_tags(markdown_render(self.content)), :length => 300)

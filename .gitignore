@@ -15,4 +15,5 @@
 /tmp
 
 # Ignore project files
+rails_best_practices_output.html
 /.idea
