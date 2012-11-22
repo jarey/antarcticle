@@ -35,11 +35,14 @@ namespace :deploy do
    end
 end
 
-task :symlink_database_yml do
+task :symlink_configs do
+  # database
   run "rm #{release_path}/config/database.yml"
   run "ln -sfn #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+  # application
+  run "ln -sfn #{shared_path}/config/application.yml #{release_path}/config/application.yml"
 end
-after "bundle:install", "symlink_database_yml"
+after "bundle:install", "symlink_configs"
 
 namespace :rake_ do
   desc "Run a task on a remote server."
