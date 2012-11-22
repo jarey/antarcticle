@@ -32,7 +32,7 @@ describe "Article" do
         before { click_button "Post article" }
 
         it "should be on article details page" do
-          current_path.should == article_path(1) 
+          current_path.should == article_path(Article.last) 
         end
 
         it "should have success message" do
@@ -79,7 +79,7 @@ describe "Article" do
         before { click_button "Edit article" }
 
         it "should be on article details page" do
-          current_path.should == article_path(1) 
+          current_path.should == article_path(article)
         end
 
         it "should have success message" do
