@@ -1,0 +1,5 @@
+#poulpe_url: 'http://poulpe.test.org'
+new_relic:
+  enabled: false
+  app_name: "Antarcticle"
+  license_key: ''
