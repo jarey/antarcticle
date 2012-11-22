@@ -5,6 +5,8 @@ env:
   - DB=sqlite
   - DB=mysql
 script:
-  - RAILS_ENV=test bundle exec rake --trace db:migrate rspec spec
+  - RAILS_ENV=test bundle exec rake --trace db:migrate
+  - bundle exec rake db:test:prepare
+  - bundle exec rspec spec/
 before_script:
   - mysql -e 'create database antarcticle_test'
