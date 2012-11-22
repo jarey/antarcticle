@@ -17,7 +17,7 @@ gem 'bootstrap-will_paginate', '0.0.9'
 gem 'cancan', '1.6.8'
 # tags
 gem 'acts-as-taggable-on', '2.3.3'
-
+gem 'newrelic_rpm'
 group :production do
   # production db driver
   gem 'mysql2'
@@ -58,7 +58,8 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.2'
   # additional icon font to use with bootstrap
   gem 'font-awesome-sass-rails'
-
+  # speed up assets compilation
+  gem 'turbo-sprockets-rails3'
   # js compressor
   gem 'uglifier', '>= 1.2.3'
 

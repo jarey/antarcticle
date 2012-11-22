@@ -17,3 +17,4 @@
 # Ignore project files
 rails_best_practices_output.html
 /.idea
+config/application.yml
