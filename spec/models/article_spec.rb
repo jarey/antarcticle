@@ -65,29 +65,4 @@ describe Article do
     its(:description) { should_not be_blank }
     its(:description) { should have(300).characters }
   end
-
-  #describe "tagging" do
-    #let(:tags) { "tag1, tag2, tag3, tag 4" }
-    #before do
-      #@article.tag_list = "tag1,tag2, tag3  , tag 4"
-      #@article.save
-    #end
-
-    #its(:tag_list) { should == tags }
-    #it "should be tagged with" do
-      #tags.split(",").map(&:strip).each do |tag|
-        #Article.tagged_with(tag).should include(@article)
-      #end
-    #end
-
-    #describe "tag counts" do
-      #let(:tag_counts) { Article.tag_counts }
-
-      #it "should have 1 article in each tag" do
-        #tag_counts.each do |tag|
-          #tag.count.should == 1
-        #end
-      #end
-    #end
-  #end
 end
