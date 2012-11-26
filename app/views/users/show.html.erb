@@ -18,6 +18,11 @@
 
     </div>
     <% if @user_articles.any? %>
+        <%= form_tag user_path(@user), method: :get do %>
+          <%= text_field_tag :tags, params[:tags], class: "span7", id: "tags_filter", placeholder: "Tags filter" %>
+          <%= submit_tag 'Find', name: nil, class: "btn btn-info" %>
+        <% end %>
+
         <ul id="articles" class="unstyled">
           <%= render @user_articles %>
         </ul>

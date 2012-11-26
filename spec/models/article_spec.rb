@@ -20,23 +20,23 @@ describe Article do
   it { should be_valid}
 
   describe "title length" do
-    describe "is too long" do
+    context "is too long" do
       before { @article.title = "a" * 150 }
       it { should_not be_valid }
     end
-    describe "is zero" do
+    context "is zero" do
       before { @article.title = "" }
       it { should_not be_valid }
     end
   end
 
-  describe "when user is not present" do
+  context "when user is not present" do
     before { @article.user_id = nil }
     it { should_not be_valid }
   end
 
   describe "acessible attributes" do
-    it "should not allow access to user_id" do
+    it "doesnt allow access to user_id" do
       expect do
         Article.new(user_id: user.id)
       end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
@@ -52,7 +52,7 @@ describe Article do
       @article.save
     end
 
-    it "should be ordered descendant by creation date" do
+    it "sould be descendant by creation date" do
       Article.all.index(@article2).should < Article.all.index(@article)
     end
   end

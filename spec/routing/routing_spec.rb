@@ -33,6 +33,10 @@ describe "routing" do
       get("/tags/tag1+tag2").should route_to("tags#index", tags: "tag1+tag2")
       get("/tags/tag.1+tag.2").should route_to("tags#index", tags: "tag.1+tag.2")
     end
+
+    it "should route to tags#tags_filter" do
+      get("/tags_filter").should route_to("tags#filter")
+    end
   end
 
   describe "articles routing" do

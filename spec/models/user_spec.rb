@@ -15,7 +15,7 @@ describe User do
   specify { should be_valid }
   specify { should_not be_admin }
 
-  describe "when username is not present" do
+  context "when username is not present" do
     before { @user.username = nil }
     it { should_not be_valid}
   end

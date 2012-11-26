@@ -6,7 +6,7 @@ describe "Article" do
   let(:user) { FactoryGirl.create(:user) }
   before { sign_in user }
 
-  describe "creation" do
+  describe "creation page" do
     before { visit new_article_path }
 
     describe "form elements" do
@@ -24,65 +24,62 @@ describe "Article" do
         fill_in_placeholder 'Tags (separated by commas)', "tag1, tag2"
       end
 
-      it "should create new article" do
+      it "creates new article" do
         expect { click_button "Post article" }.to change(Article, :count).by(1)
       end
 
       describe "redirect" do
         before { click_button "Post article" }
 
-        it "should be on article details page" do
-          current_path.should == article_path(Article.last) 
+        it "leads to articles details page" do
+          current_path.should == article_path(Article.last)
         end
 
-        it "should have success message" do
+        it "shows success message" do
           should have_selector('div.alert.alert-success', text: "Article was successfully created")
         end
       end
     end
 
     context "submitted with invalid data" do
-      it "should not create an article" do
+      it "doesnt create article" do
         expect { click_button "Post article" }.not_to change(Article, :count)
       end
 
       describe "errors" do
         before { click_button "Post article" }
-        it "should have error in title" do
+        it "shows error in title field" do
           should have_error_message('Title')
         end
       end
     end
   end
 
-  describe "editing" do
+  describe "edit" do
     let(:article) { FactoryGirl.create(:article, user: user, tag_list: "tag1,tag2") }
     before { visit edit_article_path(article) }
 
     describe "form" do
       it { should have_selector('h2', text: "Editing article") }
       it { should have_button('Edit article') }
-
-      it "should have fields filled with article data" do
-        should have_placeholder('Enter article content here ...', text: article.content)
-        should have_placeholder('Article title', value: article.title)
-        should have_placeholder("Tags (separated by commas)", value: article.tag_list)
-      end
+      it { should have_placeholder('Enter article content here ...', text: article.content) }
+      it { should have_placeholder('Article title', value: article.title) }
+      it { should have_placeholder("Tags (separated by commas)", value: article.tag_list) }
     end
 
     context "submitted" do
-      it "new article should not be created" do
+      it "doesnt create new article" do
         expect { click_button "Edit article" }.not_to change(Article, :count)
       end
 
       describe "redirect" do
         before { click_button "Edit article" }
 
-        it "should be on article details page" do
+        it "leads to article details page" do
           current_path.should == article_path(article)
         end
 
-        it "should have success message" do
+        it "shows success message" do
           should have_selector('div.alert.alert-success', text: "Article was successfully updated")
         end
       end
@@ -93,14 +90,12 @@ describe "Article" do
     let(:article) { FactoryGirl.create(:article, user: user, tag_list: "tag1,tag2") }
     before { visit article_path(article) }
 
-    it "should contain aricle data" do
-      should have_content(article.title)
-      should have_content(article.content)
-      should have_link(user.username)
-      should have_content(I18n.l(article.created_at, :format => :long))
-    end
+    it { should have_content(article.title) }
+    it { should have_content(article.content) }
+    it { should have_link(user.username) }
+    it { should have_content(I18n.l(article.created_at, :format => :long)) }
 
-    it "should have tags as links" do
+    it "shows tags as links" do
       %w[tag1 tag2].each do |tag|
         should have_link(tag)
       end
@@ -140,7 +135,7 @@ describe "Article" do
       visit articles_path
     end
 
-    it "should list all articles" do
+    it "lists all articles" do
       Article.all.each do |item|
         should have_selector("li##{item.id} h2", text: item.title)
         should have_selector("li##{item.id}", text: item.content)
@@ -159,7 +154,7 @@ describe "Article" do
     end
 
     context "with few articles" do
-      it "should not be paginated" do
+      it "doesnt display pagination" do
         should_not have_selector(".pagination")
       end
     end
@@ -175,7 +170,7 @@ describe "Article" do
         visit articles_path
       end
 
-      it "should be paginated" do
+      it "displays pagination" do
         should have_selector(".pagination")
       end
     end
@@ -186,11 +181,11 @@ describe "Article" do
          click_button "Find"
        end
 
-       it "should be at tags page" do
-          current_path.should == tag_path("tag1,tag2") 
+       it "opens tags page" do
+          current_path.should == tag_path("tag1,tag2")
        end
 
-       it "should open filter results" do
+       it "shows result" do
          should have_content "tag1"
          should have_content "tag2"
        end

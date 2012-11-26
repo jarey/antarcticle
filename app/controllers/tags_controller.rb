@@ -6,7 +6,11 @@ class TagsController < ApplicationController
   end
 
   def filter
-    redirect_to tag_path(params[:tags])
+    if params[:tags].blank?
+      redirect_to articles_path
+    else
+      redirect_to tag_path(params[:tags])
+    end
   end
 
   private
