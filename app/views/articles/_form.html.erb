@@ -1,8 +1,10 @@
 <div class="row">
   <div class="hero-unit span7 offset2 well2">
-    <div class="page-header">
+
+    <header class="page-header">
       <h2><%= raw form_legend %></h2>
-    </div>
+    </header>
+
     <% if article.errors.any? %>
         <div class="alert alert-error">
           <a class="close" data-dismiss="alert" href="#">×</a>
@@ -13,6 +15,7 @@
           </ul>
         </div>
     <% end %>
+
     <%= form_for(article) do |f| %>
         <%= control_group article, :title do %>
             <%= f.text_field :title, class: "span7", placeholder: "Article title" %>

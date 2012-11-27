@@ -1,7 +1,8 @@
 <% content_for(:title, "Tags: #{@tags_names}") %>
 <div class="row">
   <div class="span10 offset1">
-    <div class="clearfix">
+
+    <header class="clearfix">
       <div class="pull-left">
         <ul class="header-tags">
           <% @tags_names.each do |tag| %>
@@ -9,16 +10,18 @@
           <% end %>
         </ul>
       </div>
-    </div>
+    </header>
+
     <% if @articles.any? %>
-        <ul id="articles" class="unstyled">
+        <section id="articles">
           <%= render @articles %>
-        </ul>
+        </section>
         <%= will_paginate @articles %>
     <% else %>
         <div class="centralized-inputs">
           <h3>This tag contains no articles.</h3>
         </div>
     <% end %>
+
   </div>
 </div>

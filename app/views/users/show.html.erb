@@ -1,31 +1,31 @@
 <% content_for(:title, "User: #{@user.username}") %>
 <div class="row">
   <div class="span10 offset1">
-    <div class="clearfix profile-header">
 
+    <header class="clearfix profile-header">
       <div class="pull-left">
         <h2 class="username"><i class="icon-user"></i> <%= @user.username %></h2>
         <% if @user.first_name || @user.last_name %>
           <h3 class="name">(<%= @user.first_name %> <%= @user.last_name %>)</h3>
         <% end %>
       </div>
-
       <div class="pull-right">
         <ul class="numbers clearfix">
           <li>Articles<strong><%= @user.articles.size %></strong></li>
         </ul>
       </div>
+    </header>
 
-    </div>
     <% if @user_articles.any? %>
         <%= form_tag user_path(@user), method: :get do %>
           <%= text_field_tag :tags, params[:tags], class: "span7", id: "tags_filter", placeholder: "Tags filter" %>
           <%= submit_tag 'Find', name: nil, class: "btn btn-info" %>
         <% end %>
 
-        <ul id="articles" class="unstyled">
+        <section id="articles">
           <%= render @user_articles %>
-        </ul>
+        </section>
+
         <%= will_paginate @user_articles %>
     <% else %>
         <div class="centralized-inputs">

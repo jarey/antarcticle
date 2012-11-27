@@ -103,10 +103,14 @@ pre {
   padding-bottom: 0px;
 }
 
-.breadcrumb {
+article footer .breadcrumb {
   border: 1px solid rgb(221, 221, 221);
   background-color: rgb(251, 251, 251);
   box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+
+  li:not(:first-child) {
+    margin-left: 8px;
+  }
 }
 
 .article-details {
@@ -122,7 +126,7 @@ pre {
 #articles {
   margin: 5px 0px 10px 0px;
 
-  li .well2 {
+  article .well2 {
     margin-bottom: 3px;
     padding: 10px;
   }

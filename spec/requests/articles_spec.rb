@@ -137,10 +137,10 @@ describe "Article" do
 
     it "lists all articles" do
       Article.all.each do |item|
-        should have_selector("li##{item.id} h2", text: item.title)
-        should have_selector("li##{item.id}", text: item.content)
-        should have_selector("li##{item.id}", text: item.user.username)
-        should have_selector("li##{item.id}", text: I18n.l(item.created_at, :format => :long))
+        should have_selector("article##{item.id} h2", text: item.title)
+        should have_selector("article##{item.id}", text: item.content)
+        should have_selector("article##{item.id}", text: item.user.username)
+        should have_selector("article##{item.id}", text: I18n.l(item.created_at, :format => :long))
       end
     end
 

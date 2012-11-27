@@ -1,16 +1,26 @@
-<li id="<%= article.id %>">
-  <div class="well2">
-    <div class="page-header">
-      <h2><%= link_to article.title, article_path(article) %></h2>
+  <article id="<%= article.id %>">
+    <div class="well2">
+      <header class="page-header">
+        <h2><%= link_to article.title, article_path(article) %></h2>
+      </header>
+      <div class="content">
+        <%= article.description %>
+      </div>
+      <%= link_to 'Read more', article_path(article), class: "btn btn-small pull-right read-more" %>
+      <div class="clearfix"></div>
     </div>
-    <div class="content">
-      <%= article.description %>
-    </div>
-    <%= link_to 'Read more', article_path(article), class: "btn btn-small pull-right read-more" %>
-    <div class="clearfix"></div>
-  </div>
-  <ul class="breadcrumb">
-    <li><i class="icon-calendar "></i>&nbsp;<strong>Posted </strong><%= l article.created_at, :format => :long %> </li>
-    <li>&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon-user"></i>&nbsp;<strong>by </strong><%= link_to article.author_name, article.user %> </li>
-  </ul>
-</li>
+    <footer>
+      <ul class="breadcrumb">
+        <li>
+          <i class="icon-calendar "></i>
+          <strong>Posted </strong>
+          <%= l article.created_at, :format => :long %>
+        </li>
+        <li>
+          <i class="icon-user"></i>
+          <strong>by </strong>
+          <%= link_to article.author_name, article.user %>
+        </li>
+      </ul>
+    </footer>
+  </article>
