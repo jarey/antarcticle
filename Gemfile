@@ -50,6 +50,8 @@ group :test do
   gem 'capybara', '~> 1.1.3'
   # factories for test data
   gem 'factory_girl_rails', '4.1.0'
+  # testing external http requests
+  gem 'webmock'
 end
 
 group :assets do
