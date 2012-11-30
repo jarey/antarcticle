@@ -3,15 +3,14 @@ require 'poulpe_authentication_client'
 
 describe PoulpeAuthenticationClient do
   before do
-    @request_body = <<-STR
-     <?xml version="1.0" encoding="UTF-8"?>
-     <authentication xmlns="http://www.jtalks.org/namespaces/1.0">
-       <credintals>
-         <username>admin</username>
-         <passwordHash>21232f297a57a5a743894a0e4a801fc3</passwordHash>
-       </credintals>
-     </authentication>
-    STR
+    @request_body = "" \
+     "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" \
+     "<authentication xmlns=\"http://www.jtalks.org/namespaces/1.0\">" \
+       "<credintals>" \
+        "<username>admin</username>" \
+        "<passwordHash>21232f297a57a5a743894a0e4a801fc3</passwordHash>" \
+       "</credintals>" \
+     "</authentication>"
 
     @response_body = <<-STR
       <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -39,8 +38,10 @@ describe PoulpeAuthenticationClient do
     STR
 
     @url = "http://poulpe.test/authenticate"
-    @authenticator = PoulpeAuthenticationClient.new(@url)
+    @authenticator = PoulpeAuthenticationClient.new(@url, "admin", "21232f297a57a5a743894a0e4a801fc3")
   end
+
+  subject { @authenticator }
 
   describe ".authenticate" do
 
@@ -52,8 +53,20 @@ describe PoulpeAuthenticationClient do
       end
 
       it "successfully authenticates user" do
-        @authenticator.authenticate("admin", "21232f297a57a5a743894a0e4a801fc3").should be_true
+        @authenticator.authenticate.should be_true
         WebMock.should have_requested(:post, @url).with(body: @request_body).once
+      end
+
+      describe "user info" do
+        before do
+          @authenticator.authenticate
+        end
+        it "contains first name" do
+          @authenticator.first_name.should eq("admin1")
+        end
+        it "contains last name" do
+          @authenticator.last_name.should eq("admin")
+        end
       end
     end
 
@@ -65,7 +78,7 @@ describe PoulpeAuthenticationClient do
       end
 
       it "doesnt authenticate user" do
-        @authenticator.authenticate("admin", "21232f297a57a5a743894a0e4a801fc3").should be_false
+        @authenticator.authenticate.should be_false
         WebMock.should have_requested(:post, @url).with(body: @request_body).once
       end
     end
