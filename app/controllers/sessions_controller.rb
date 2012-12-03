@@ -1,9 +1,15 @@
+require 'authentication_service'
+
 class SessionsController < ApplicationController
   def new
   end
 
   def create
-    user = User.find_by_username(params[:session][:username])
+    if CONFIG["poulpe_authentication"]
+      user = AuthenticationService.authenticate(params[:session][:username], params[:session][:password])
+    else
+      user = User.find_by_username(params[:session][:username])
+    end
     if user
       sign_in user
       flash[:notice] = 'You have successfully signed in!'
