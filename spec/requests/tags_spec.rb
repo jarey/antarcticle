@@ -15,8 +15,8 @@ describe "Tags" do
       visit tag_path(tag)
     end
 
-    it "contains tag name" do
-      should have_selector('li', text: tag)
+    it "puts tag in filter" do
+      should have_placeholder "Tags filter", value: 'tag1'
     end
 
     it "shows tagged articles" do
@@ -35,9 +35,8 @@ describe "Tags" do
       visit tag_path(tags)
     end
 
-    it "contains tags names" do
-      should have_selector('li', text: 'tag1')
-      should have_selector('li', text: 'tag2')
+    it "puts tags in filter" do
+      should have_placeholder "Tags filter", value: 'tag1,tag2'
     end
 
     it "shows tagged articles" do
