@@ -70,22 +70,46 @@ describe "User" do
         @article1 = FactoryGirl.create(:article, user: user, tag_list: "tag1, tag2")
         @article2 = FactoryGirl.create(:article, user: user, tag_list: "tag1, tag2")
         @article3 = FactoryGirl.create(:article, tag_list: "tag1, tag2")
-        visit user_path(user)
-        fill_in 'tags_filter', with: "tag1,tag2"
-        click_button "Find"
       end
 
-      it "stays on same page" do
-        current_path.should == user_path(user)
+      context "filled" do
+        before do
+          visit user_path(user)
+          fill_in 'tags_filter', with: "tag1,tag2"
+          click_button "Find"
+        end
+
+        it "stays on same page" do
+          current_path.should == user_path(user)
+        end
+
+        it "shows user articles tagged with 'tag1' and 'tag2'" do
+          should have_content @article1.title
+          should have_content @article2.title
+        end
+
+        it "doesnt show articles of other user tagged with 'tag1' and 'tag2'" do
+          should_not have_content @article3.title
+        end
       end
 
-      it "shows user articles tagged with 'tag1' and 'tag2'" do
-        should have_content @article1.title
-        should have_content @article2.title
-      end
+      context "is empty" do
+        before do
+          @article4 = FactoryGirl.create(:article, user: user, tag_list: "")
+          visit user_path(user)
+          fill_in 'tags_filter', with: ""
+          click_button "Find"
+        end
 
-      it "doesnt show articles of other user tagged with 'tag1' and 'tag2'" do
-        should_not have_content @article3.title
+        it "stays on same page" do
+          current_path.should == user_path(user)
+        end
+
+        it "shows all articles of this user" do
+          should have_content @article1.title
+          should have_content @article2.title
+          should have_content @article4.title
+        end
       end
     end
   end
