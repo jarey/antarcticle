@@ -53,10 +53,10 @@ class PoulpeAuthenticationClient
   def compose_request_body
      "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" \
      "<authentication xmlns=\"http://www.jtalks.org/namespaces/1.0\">" \
-       "<credintals>" \
+       "<credentials>" \
         "<username>#{@username}</username>" \
         "<passwordHash>#{@password_hash}</passwordHash>" \
-       "</credintals>" \
+       "</credentials>" \
      "</authentication>"
   end
 

@@ -6,18 +6,18 @@ describe PoulpeAuthenticationClient do
     @request_body = "" \
      "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" \
      "<authentication xmlns=\"http://www.jtalks.org/namespaces/1.0\">" \
-       "<credintals>" \
+       "<credentials>" \
         "<username>admin</username>" \
         "<passwordHash>21232f297a57a5a743894a0e4a801fc3</passwordHash>" \
-       "</credintals>" \
+       "</credentials>" \
      "</authentication>"
 
     @response_body = <<-STR
       <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
       <authentication xmlns="http://www.jtalks.org/namespaces/1.0">
-          <credintals>
+          <credentials>
               <username>admin</username>
-          </credintals>
+          </credentials>
           <status>success</status>
           <profile>
               <firstName>admin1</firstName>
@@ -29,9 +29,9 @@ describe PoulpeAuthenticationClient do
     @response_body_failure = <<-STR
       <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
       <authentication xmlns="http://www.jtalks.org/namespaces/1.0">
-          <credintals>
+          <credentials>
               <username>failure-user</username>
-          </credintals>
+          </credentials>
           <status>fail</status>
           <statusInfo>Incorrect username or password</statusInfo>
       </authentication>
