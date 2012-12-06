@@ -1,5 +1,5 @@
 # Define your root directory
-root = "/home/deployer/apps/gifroll/current"
+root = "/home/antarcticle/apps/antarcticle/current"
 
 # Define worker directory for Unicorn
 working_directory root
@@ -12,7 +12,7 @@ stderr_path "#{root}/log/unicorn.log"
 stdout_path "#{root}/log/unicorn.log"
 
 # Listen on a UNIX data socket
-listen "/tmp/unicorn.gifroll.sock"
+listen "/tmp/unicorn.antarcticle.sock"
 
 # 16 worker processes for production environment
 worker_processes 16
