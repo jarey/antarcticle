@@ -28,11 +28,12 @@ role :db,  "jtalks.org", :primary => true # This is where Rails migrations will 
 
 # If you are using Passenger mod_rails uncomment this:
 namespace :deploy do
-   task :start do ; end
-   task :stop do ; end
-   task :restart, :roles => :app, :except => { :no_release => true } do
-     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-   end
+  %w[start stop restart].each do |command|
+    desc "#{command} unicorn server"
+    task command, roles: :app, except: {no_release: true} do
+      run "/etc/init.d/unicorn_#{application} #{command}" # Using unicorn as the app server
+    end
+  end
 end
 
 task :symlink_configs do

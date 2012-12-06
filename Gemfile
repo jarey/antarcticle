@@ -19,6 +19,9 @@ gem 'cancan', '1.6.8'
 gem 'acts-as-taggable-on', '2.3.3'
 # new relic performancy monitor
 gem 'newrelic_rpm'
+# production server
+gem 'unicorn'
+
 group :production do
   # production db driver
   gem 'mysql2'
