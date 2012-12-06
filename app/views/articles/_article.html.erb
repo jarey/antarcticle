@@ -1,36 +1,40 @@
-  <article id="<%= article.id %>">
-    <div class="article">
-
-      <header>
-        <div class="date">
-          <span class="day"><%= l article.created_at, format: "%d" %></span>
-          <span class="month"><%= l article.created_at, format: "%b" %></span>
-          <span class="year"><%= l article.created_at, format: "%Y" %></span>
-        </div>
-        <h2><%= link_to article.title, article_path(article) %></h2>
-      </header>
-
-      <div class="body">
-        <div class="content">
-          <%= article.description %>
-        </div>
-        <%= link_to 'Read more', article_path(article), class: "btn btn-small pull-right read-more" %>
-        <div class="clearfix"></div>
+<article id="<%= article.id %>" class="entry">
+  <div class="main-content">
+    <header>
+      <div class="date">
+        <span class="day"><%= l article.created_at, format: "%d" %></span>
+        <span class="month"><%= l article.created_at, format: "%b" %></span>
+        <span class="year"><%= l article.created_at, format: "%Y" %></span>
       </div>
+      <h2><%= link_to article.title, article_path(article) %></h2>
+    </header>
+
+    <div class="body">
+      <div class="content">
+        <%= article.description %>
+      </div>
+      <%= link_to 'Read more', article_path(article), class: "btn btn-small pull-right read-more" %>
+      <div class="clearfix"></div>
     </div>
-    <footer>
-      <ul class="breadcrumb">
-        <li>
-          <i class="icon-user"></i>
-          <strong>by </strong>
-          <%= link_to article.author_name, article.user %>
-        </li>
-        <li class="pull-right">
+  </div>
+
+  <footer>
+    <ul class="breadcrumb clearfix">
+      <li>
+        <i class="icon-user"></i>
+        <strong>by </strong>
+        <%= link_to article.author_name, article.user %>
+      </li>
+      <li class="pull-right">
+        <ul class="tags">
           <% article.tags.map(&:name).each do |tag| %>
-            <i class="icon-tags"></i>
-            <%= link_to tag, tag_path(sanitize(tag)) %>
+            <li>
+              <i class="icon-tags"></i><%= link_to tag, tag_path(sanitize(tag)) %>
+            </li>
           <% end %>
-        </li>
-      </ul>
-    </footer>
-  </article>
+        </ul>
+      </li>
+    </ul>
+  </footer>
+
+</article>

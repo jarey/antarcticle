@@ -10,11 +10,11 @@ describe "Article" do
     before { visit new_article_path }
 
     describe "form elements" do
-      it { should have_selector('h2', text: "New article") }
-      it { should have_placeholder('Enter article content here ...') }
-      it { should have_placeholder('Article title') }
-      it { should have_placeholder("Tags (separated by commas)") }
-      it { should have_button('Post article') }
+      it { should have_selector 'h2', text: "New article" }
+      it { should have_placeholder 'Enter article content here ...' }
+      it { should have_placeholder 'Article title' }
+      it { should have_placeholder "Tags (separated by commas)" }
+      it { should have_button 'Post article' }
     end
 
     context "submitted with valid data" do
@@ -36,7 +36,7 @@ describe "Article" do
         end
 
         it "shows success message" do
-          should have_selector('div.alert.alert-success', text: "Article was successfully created")
+          should have_selector 'div.alert.alert-success', text: "Article was successfully created"
         end
       end
     end
@@ -49,7 +49,7 @@ describe "Article" do
       describe "errors" do
         before { click_button "Post article" }
         it "shows error in title field" do
-          should have_error_message('Title')
+          should have_error_message 'Title'
         end
       end
     end
@@ -60,11 +60,11 @@ describe "Article" do
     before { visit edit_article_path(article) }
 
     describe "form" do
-      it { should have_selector('h2', text: "Editing article") }
-      it { should have_button('Edit article') }
-      it { should have_placeholder('Enter article content here ...', text: article.content) }
-      it { should have_placeholder('Article title', value: article.title) }
-      it { should have_placeholder("Tags (separated by commas)", value: article.tag_list) }
+      it { should have_selector 'h2', text: "Editing article" }
+      it { should have_button 'Edit article' }
+      it { should have_placeholder 'Enter article content here ...', text: article.content }
+      it { should have_placeholder 'Article title', value: article.title }
+      it { should have_placeholder "Tags (separated by commas)", value: article.tag_list }
     end
 
     context "submitted" do
@@ -80,7 +80,7 @@ describe "Article" do
         end
 
         it "shows success message" do
-          should have_selector('div.alert.alert-success', text: "Article was successfully updated")
+          should have_selector 'div.alert.alert-success', text: "Article was successfully updated"
         end
       end
     end
@@ -90,10 +90,10 @@ describe "Article" do
     let(:article) { FactoryGirl.create(:article, user: user, tag_list: "tag1,tag2") }
     before { visit article_path(article) }
 
-    it { should have_content(article.title) }
-    it { should have_content(article.content) }
-    it { should have_link(user.username) }
-    it { should have_content(I18n.l(article.created_at, :format => :long)) }
+    it { should have_content article.title }
+    it { should have_content article.content }
+    it { should have_link user.username }
+    it { should have_selector ".date" }
 
     it "shows tags as links" do
       %w[tag1 tag2].each do |tag|
@@ -102,12 +102,12 @@ describe "Article" do
     end
 
     context "visited by author" do
-      it { should have_link("Edit", href: edit_article_path(article)) }
+      it { should have_link "Edit", href: edit_article_path(article) }
     end
 
     context "visited by other user" do
       before { sign_in FactoryGirl.create(:user) }
-      it { should_not have_link("Edit", href: edit_article_path(article)) }
+      it { should_not have_link "Edit", href: edit_article_path(article) }
     end
 
     context "content with markdown" do
@@ -115,81 +115,83 @@ describe "Article" do
       before { visit article_path(article) }
 
       it "should be rendered" do
-        should have_selector('h1', text: "Header")
+        should have_selector 'h1', text: "Header"
       end
     end
   end
 
   describe "index" do
-    before do
-      FactoryGirl.create(:article,
-                         user:     user,
-                         content:  "Content1",
-                         title:    "title1",
-                         tag_list: "tag1,tag2")
-      FactoryGirl.create(:article,
-                         user:     user,
-                         content:  "Content2",
-                         title:    "title2",
-                         tag_list: "tag1,tag2")
-      visit articles_path
-    end
+    context "with articles" do
+      before do
+        FactoryGirl.create(:article,
+                           user:     user,
+                           content:  "Content1",
+                           title:    "title1",
+                           tag_list: "tag1,tag2")
+        FactoryGirl.create(:article,
+                           user:     user,
+                           content:  "Content2",
+                           title:    "title2",
+                           tag_list: "tag1,tag2")
+        visit articles_path
+      end
 
-    it "lists all articles" do
-      Article.all.each do |item|
-        should have_selector("article##{item.id} h2", text: item.title)
-        should have_selector("article##{item.id}", text: item.content)
-        should have_selector("article##{item.id}", text: item.user.username)
-        should have_selector("article##{item.id} .date")
+      it "lists all articles" do
+        Article.all.each do |item|
+          should have_selector "article##{item.id} h2", text: item.title
+          should have_selector "article##{item.id}", text: item.content
+          should have_selector "article##{item.id}", text: item.user.username
+          should have_selector "article##{item.id} .date"
+        end
+      end
+
+      context "few articles" do
+        it "doesnt display pagination" do
+          should_not have_selector ".pagination"
+        end
+      end
+
+      context "many articles" do
+        before do
+          20.times do |n|
+            FactoryGirl.create(:article,
+                               user:    user,
+                               content: "Content#{n}",
+                               title:   "title#{n}")
+          end
+          visit articles_path
+        end
+
+        it "displays pagination" do
+          should have_selector ".pagination"
+        end
       end
     end
 
+    context "without articles" do
+      it { should have_content "There is no articles" }
+    end
+
     context "visited by registered user" do
-      it { should have_link('Write article') }
+      it { should have_link 'Write article' }
     end
 
     context "visited by guest" do
       before { sign_out }
-      it { should_not have_link('Write article') }
-    end
-
-    context "with few articles" do
-      it "doesnt display pagination" do
-        should_not have_selector(".pagination")
-      end
-    end
-
-    context "with many articles" do
-      before do
-        20.times do |n|
-          FactoryGirl.create(:article,
-                             user:    user,
-                             content: "Content#{n}",
-                             title:   "title#{n}")
-        end
-        visit articles_path
-      end
-
-      it "displays pagination" do
-        should have_selector(".pagination")
-      end
+      it { should_not have_link 'Write article' }
     end
 
     describe "tags filter" do
-       before :each do
-         fill_in 'tags_filter', with: "tag1,tag2"
-         click_button "Find"
-       end
+      before :each do
+        fill_in 'tags_filter', with: "tag1,tag2"
+        click_button "Find"
+      end
 
-       it "opens tags page" do
-          current_path.should == tag_path("tag1,tag2")
-       end
-
-       it "shows result" do
-         should have_content "tag1"
-         should have_content "tag2"
-       end
+      it "opens tags page" do
+        current_path.should == tag_path("tag1,tag2")
+      end
     end
+
   end
 
 end

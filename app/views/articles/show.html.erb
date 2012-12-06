@@ -1,37 +1,64 @@
 <% content_for(:title, @article.title) %>
+
 <div class="row">
   <div class="span10 offset1">
-    <div class="article-details">
+    <article id="<%= @article.id %>" class="entry">
 
-      <div class="clearfix" style="line-height: 60px">
-        <div class="pull-left">
-          <h2><%= @article.title %></h2>
-        </div>
+      <div class="manage-buttons clearfix">
         <div class="pull-right">
           <% if can? :update, @article %>
             <%= link_to edit_article_path(@article), class: "btn btn-info" do %>
               <i class="icon-edit"></i> Edit
             <% end %>
           <% end %>
+
+          <% if can? :destroy, @article %>
+            <%= link_to article_path(@article), class: "btn btn-danger",
+              method: :delete, confirm: "Are you sure you want to delete this article?" do %>
+              <i class="icon-remove"></i> Delete
+            <% end %>
+          <% end %>
         </div>
       </div>
 
-      <div class="well2">
-        <%= markdown(@article.content) %>
-      </div>
-      <ul class="breadcrumb">
-        <li><i class="icon-calendar"></i>&nbsp;<strong>Posted </strong><%= l @article.created_at, format: :long %> </li>
-        <li>&nbsp;&nbsp;&nbsp;&nbsp;<i class="icon-user"></i>&nbsp;<strong>by </strong><%= link_to @article.author_name, @article.user %> </li>
-      </ul>
-      <div class="tags">
-        <i class="icon-tags"></i>&nbsp;<strong>Tags:</strong>&nbsp;
-        <% if @article.tags.any? %>
-          <%= raw @article.tags.map(&:name).map { |t| link_to h(t), tag_path(t) }.join(', ') %>
-        <% else %>
-          none
-        <% end %>
-      </div>
-    </div>
-  </div>
+      <div class="main-content">
+        <header>
+          <div class="date">
+            <span class="day"><%= l @article.created_at, format: "%d" %></span>
+            <span class="month"><%= l @article.created_at, format: "%b" %></span>
+            <span class="year"><%= l @article.created_at, format: "%Y" %></span>
+          </div>
+          <h2><%= @article.title %></h2>
+        </header>
 
+        <div class="body">
+          <div class="content">
+            <%= markdown @article.content %>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+
+      <footer>
+        <ul class="breadcrumb clearfix">
+          <li>
+            <i class="icon-user"></i>
+            <strong>by </strong>
+            <%= link_to @article.author_name, @article.user %>
+          </li>
+          <li class="pull-right">
+            <ul class="tags">
+              <% @article.tags.map(&:name).each do |tag| %>
+                <li>
+                  <i class="icon-tags"></i><%= link_to tag, tag_path(sanitize(tag)) %>
+                </li>
+              <% end %>
+            </ul>
+          </li>
+        </ul>
+      </footer>
+
+    </article>
+
+  </div>
 </div>

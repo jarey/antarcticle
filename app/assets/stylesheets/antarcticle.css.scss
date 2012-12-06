@@ -113,16 +113,6 @@ pre {
   }
 }
 
-.article-details {
-  .well2 {
-    margin-bottom: 3px;
-  }
-
-  .tags {
-    padding-left: 10px;
-  }
-}
-
 #articles {
   margin: 5px 0px 10px 0px;
 
@@ -198,71 +188,81 @@ ul.header-tags {
   width: 70px;
   font-family: Georgia, serif;
   color: rgb(100, 100, 100);
- }
-
-.day, .month, .year {
-  position: absolute;
+  .day, .month, .year {
+    position: absolute;
   }
 
-.day {
-  font-size: 30px;
-  top: 18px;
+  .day {
+    font-size: 30px;
+    top: 18px;
   }
 
-.month {
-  top: 0;
-  left: 0;
-  font-size: 18px;
+  .month {
+    top: 0;
+    left: 0;
+    font-size: 18px;
   }
 
-.year {
-  top: 14px;
-  right: 0;
-  font-size: 20px;
-  rotation: -90deg !important;
-  /* ** Hacks ** */
-  -webkit-transform: rotate(-90deg);
-  -moz-transform: rotate(-90deg);
+  .year {
+    top: 14px;
+    right: 0;
+    font-size: 20px;
+    rotation: -90deg !important;
+    /* ** Hacks ** */
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
   }
+}
 
-
-
-/***********************/
-
-.article {
-  margin-bottom: 5px;
-  header {
-    margin: 0;
-    border-bottom: none;
-    position: relative;
-    .date {
-      top: 5px;
-      left: 3px;
+article.entry {
+  .main-content {
+    margin-bottom: 5px;
+    word-wrap: break-word;
+    header {
+      margin: 0;
+      border-bottom: none;
+      position: relative;
+      .date {
+        top: 5px;
+        left: 3px;
+      }
+      h2 {
+        border-bottom: 1px dashed rgb(238, 238, 238);
+        border-left: medium none;
+        border-right: medium none;
+        border-top: medium none;
+        border-radius: 4px 4px 0px 0px;
+        background-color: rgb(255, 255, 255);
+        padding: 10px;
+        box-shadow: 1px 0px 1px rgba(0, 0, 0, 0.2), -1px -1px 0px rgba(0, 0, 0, 0.1);
+        margin: 0px 0px 0px 70px;
+        a {
+          color: rgb(51, 51, 51);
+        }
+      }
     }
-    h2 {
-      border-bottom: 1px dashed rgb(238, 238, 238);
+
+    .body {
+      min-height: 40px;
+      background-color: rgb(255, 255, 255);
       border-left: medium none;
       border-right: medium none;
-      border-top: medium none;
-      border-radius: 4px 4px 0px 0px;
-      background-color: rgb(255, 255, 255);
-      padding: 10px;
-      box-shadow: 1px 0px 1px rgba(0, 0, 0, 0.2), -1px -1px 0px rgba(0, 0, 0, 0.1);
-      margin: 0px 0px 0px 70px;
-      a {
-        color: rgb(51, 51, 51);
+      border-bottom: medium none;
+      border-radius: 4px 0px 4px 4px;
+      padding: 15px;
+      box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2), -1px -1px 0px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  footer {
+    .tags {
+      li {
+        white-space:nowrap;
       }
     }
   }
 
-  .body {
-    min-height: 40px;
-    background-color: rgb(255, 255, 255);
-    border-left: medium none;
-    border-right: medium none;
-    border-bottom: medium none;
-    border-radius: 4px 0px 4px 4px;
-    padding: 15px;
-    box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2), -1px -1px 0px rgba(0, 0, 0, 0.1);
+  .manage-buttons {
+    margin-bottom: 10px;
   }
 }

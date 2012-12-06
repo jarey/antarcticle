@@ -19,9 +19,15 @@
       <% end %>
     </div>
 
-    <section id="articles">
-      <%= render @articles %>
-    </section>
+    <% if @articles.any? %>
+      <section id="articles">
+        <%= render @articles %>
+      </section>
+    <% else %>
+      <div class="centralized-inputs">
+        <h3>There is no articles</h3>
+      </div>
+    <% end %>
 
     <%= will_paginate @articles %>
   </div>
