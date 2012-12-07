@@ -52,10 +52,11 @@ h6 {
   font-family: "Ubuntu", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-pre {
+pre, code {
   overflow: auto;
   white-space: pre;
   word-wrap: normal;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
 }
 
 .global-block {
