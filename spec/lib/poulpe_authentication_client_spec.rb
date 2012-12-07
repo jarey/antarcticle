@@ -26,6 +26,16 @@ describe PoulpeAuthenticationClient do
       </authentication>
     STR
 
+    @response_body_noprofile = <<-STR
+      <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+      <authentication xmlns="http://www.jtalks.org/namespaces/1.0">
+          <credentials>
+              <username>admin</username>
+          </credentials>
+          <status>success</status>
+      </authentication>
+    STR
+
     @response_body_failure = <<-STR
       <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
       <authentication xmlns="http://www.jtalks.org/namespaces/1.0">
@@ -46,26 +56,49 @@ describe PoulpeAuthenticationClient do
   describe ".authenticate" do
 
     context "success response" do
-      before do
-        stub_request(:post, @url)
+      context "with profile info" do
+        before do
+          stub_request(:post, @url)
           .with(body: @request_body)
           .to_return(body: @response_body)
+        end
+
+        it "successfully authenticates user" do
+          @authenticator.authenticate.should be_true
+          WebMock.should have_requested(:post, @url).with(body: @request_body).once
+        end
+
+        describe "user info" do
+          before do
+            @authenticator.authenticate
+          end
+          it "contains first name" do
+            @authenticator.first_name.should eq("admin1")
+          end
+          it "contains last name" do
+            @authenticator.last_name.should eq("admin")
+          end
+        end
       end
 
-      it "successfully authenticates user" do
-        @authenticator.authenticate.should be_true
-        WebMock.should have_requested(:post, @url).with(body: @request_body).once
-      end
-
-      describe "user info" do
+      context "without profile info" do
         before do
-          @authenticator.authenticate
+          stub_request(:post, @url)
+          .with(body: @request_body)
+          .to_return(body: @response_body_noprofile)
         end
-        it "contains first name" do
-          @authenticator.first_name.should eq("admin1")
+
+        it "successfully authenticates user" do
+          @authenticator.authenticate.should be_true
+          WebMock.should have_requested(:post, @url).with(body: @request_body).once
         end
-        it "contains last name" do
-          @authenticator.last_name.should eq("admin")
+
+        describe "user info" do
+          before do
+            @authenticator.authenticate
+          end
+          it { @authenticator.first_name.should be_nil }
+          it { @authenticator.last_name.should be_nil }
         end
       end
     end

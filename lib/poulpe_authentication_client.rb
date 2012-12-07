@@ -31,8 +31,14 @@ class PoulpeAuthenticationClient
     xmldoc = Document.new(response_body)
     @status = XPath.first(xmldoc, "//status").text
     if success?
-      @first_name = XPath.first(xmldoc, "//firstName").text
-      @last_name = XPath.first(xmldoc, "//lastName").text
+      first_name = XPath.first(xmldoc, "//firstName")
+      if first_name
+        @first_name = first_name.text
+      end
+      last_name = XPath.first(xmldoc, "//lastName")
+      if last_name
+        @last_name = last_name.text
+      end
     end
   end
 
