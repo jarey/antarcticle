@@ -32,8 +32,8 @@ before_fork do |server, worker|
   ## This option works in together with preload_app true setting
   ## What is does is prevent the master process from holding
   ## the database connection
-  #defined?(ActiveRecord::Base) and
-    #ActiveRecord::Base.connection.disconnect!
+  defined?(ActiveRecord::Base) and
+    ActiveRecord::Base.connection.disconnect!
 
   # When sent a USR2, Unicorn will suffix its pidfile with .oldbin and
   # immediately start loading up a new version of itself (loaded with a new
