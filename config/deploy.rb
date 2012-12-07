@@ -50,7 +50,7 @@ task :symlink_configs do
   run "rm #{release_path}/config/database.yml"
   run "ln -sfn #{shared_path}/config/database.yml #{release_path}/config/database.yml"
   # unicorn init script
-  run "ln -sfn #{shared_path}/config/unicorn_antarcticle.sh /etc/init.d/unicorn_antarcticle"
+  run "ln -sfn #{release_path}/config/unicorn_antarcticle.sh /etc/init.d/unicorn_antarcticle"
   # application
   run "ln -sfn #{shared_path}/config/application.yml #{release_path}/config/application.yml"
 end
