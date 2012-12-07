@@ -1,4 +1,10 @@
 # This file is used by Rack-based servers to start the application.
 
 require ::File.expand_path('../config/environment',  __FILE__)
-run Antarcticle::Application
+if Rails.env.production?
+  map (ENV['RAILS_RELATIVE_URL_ROOT'] || '/') do
+    run Antarcticle::Application
+  end
+else
+  run SampleApp::Application
+end
