@@ -6,5 +6,5 @@ if Rails.env.production?
     run Antarcticle::Application
   end
 else
-  run SampleApp::Application
+  run Antarcticle::Application
 end

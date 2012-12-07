@@ -1,8 +1,8 @@
 <% content_for(:title, "User: #{@user.username}") %>
 <div class="row">
-  <div class="span10 offset1">
+  <div class="user-profile">
 
-    <header class="clearfix profile-header">
+    <header class="user-profile-header">
       <div class="pull-left">
         <h2 class="username"><i class="icon-user"></i> <%= @user.username %></h2>
         <% if @user.first_name || @user.last_name %>
@@ -10,7 +10,7 @@
         <% end %>
       </div>
       <div class="pull-right">
-        <ul class="numbers clearfix">
+        <ul class="user-stats">
           <li>Articles<strong><%= @user.articles.size %></strong></li>
         </ul>
       </div>
