@@ -6,30 +6,33 @@
     </header>
 
     <% if article.errors.any? %>
-        <div class="alert alert-error">
-          <a class="close" data-dismiss="alert" href="#">×</a>
-          <ul>
-            <% article.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
+      <div class="alert alert-error">
+        <a class="close" data-dismiss="alert" href="#">×</a>
+        <ul>
+          <% article.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
     <% end %>
 
     <%= form_for(article) do |f| %>
-        <%= control_group article, :title do %>
-            <%= f.text_field :title, class: "span7", placeholder: "Article title" %>
-        <% end %>
+      <%= control_group article, :title do %>
+        <%= f.text_field :title, class: "span7", placeholder: "Article title" %>
+      <% end %>
 
-        <%= control_group article, :content do %>
-            <%= f.text_area :content, class: "span7", rows: 25, placeholder: "Enter article content here ..." %>
+      <%= control_group article, :content do %>
+        <%= f.label :content, style: 'font-style: italic' do %>
+          Editor uses Markdown markup language. You can read reference <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">here</a>.
         <% end %>
+        <%= f.text_area :content, class: "span7", rows: 25, placeholder: "Enter article content here ..." %>
+      <% end %>
 
-        <%= control_group article, :tag_list do %>
-            <%= f.text_field :tag_list, class: "span7", placeholder: "Tags (separated by commas)" %>
-        <% end %>
+      <%= control_group article, :tag_list do %>
+        <%= f.text_field :tag_list, class: "span7", placeholder: "Tags (separated by commas)" %>
+      <% end %>
 
-        <%= f.submit submit_text, class: "btn btn-primary btn-large pull-right" %>
+      <%= f.submit submit_text, class: "btn btn-primary btn-large pull-right" %>
     <% end %>
   </div>
 </div>
