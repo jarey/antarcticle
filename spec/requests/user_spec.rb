@@ -27,7 +27,7 @@ describe "User" do
       end
 
       it "includes articles count" do
-        should have_selector ".numbers li", text: "Articles"
+        should have_selector ".user-stats li", text: "Articles"
       end
     end
 
