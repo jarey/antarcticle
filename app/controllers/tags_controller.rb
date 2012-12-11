@@ -1,7 +1,7 @@
 class TagsController < ApplicationController
   def index
     authorize! :read, Article
-    @articles = get_articles_tagged_with params[:tags], params[:page]
+    @articles = Article.get_page_tagged params[:page], params[:tags]
     render 'articles/index'
   end
 
@@ -12,12 +12,4 @@ class TagsController < ApplicationController
       redirect_to tag_path(params[:tags])
     end
   end
-
-  private
-  def get_articles_tagged_with(tags, page)
-    Article.tagged_with(tags)
-            .includes(:user, :tags)
-            .paginate(page: page, per_page: 10)
-  end
-
 end
