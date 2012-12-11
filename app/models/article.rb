@@ -21,6 +21,10 @@ class Article < ActiveRecord::Base
     includes(:user, :tags).paginate(page: page, per_page: 10)
   end
 
+  def self.get_page_tagged(page, tags)
+    get_page(page).tagged_with(tags)
+  end
+
   private
   def create_description
     self.description = helpers.truncate(helpers.strip_tags(markdown_render(self.content)), :length => 300)
