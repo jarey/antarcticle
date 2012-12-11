@@ -16,7 +16,6 @@ class PoulpeAuthenticationClient
   def authenticate
     request = create_request
     response = send_request(request)
-    puts response.body
     parse_response(response.body)
     success?
   end
@@ -52,7 +51,6 @@ class PoulpeAuthenticationClient
     request = Net::HTTP::Post.new(@url)
     request.add_field "Content-Type", "text/xml"
     request.body = compose_request_body()
-    puts request.body
     request
   end
 

@@ -1,8 +1,8 @@
 class ArticlesController < ApplicationController
 
   def index
-    @articles = Article.includes(:user, :tags).paginate(page: params[:page], per_page: 10)
     authorize! :read, Article
+    @articles = Article.get_page params[:page]
   end
 
   def show
@@ -11,8 +11,8 @@ class ArticlesController < ApplicationController
   end
 
   def new
-    @article = Article.new
     authorize! :create, Article
+    @article = Article.new
   end
 
   def edit
@@ -21,8 +21,8 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = current_user.articles.build(params[:article])
     authorize! :create, Article
+    @article = current_user.articles.build(params[:article])
 
     if @article.save
       redirect_to @article, only_path: true, notice: 'Article was successfully created.'
