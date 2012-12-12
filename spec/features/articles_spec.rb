@@ -19,9 +19,9 @@ describe "Article" do
 
     context "submitted with valid data" do
       before do
-        fill_in_placeholder 'Article title', "article1 title"
-        fill_in_placeholder 'Enter article content here ...', "Lorem ipsum"
-        fill_in_placeholder 'Tags (separated by commas)', "tag1, tag2"
+        fill_in 'Article title', with: "article1 title"
+        fill_in 'Enter article content here ...', with: "Lorem ipsum"
+        fill_in 'Tags (separated by commas)', with: "tag1, tag2"
       end
 
       it "creates new article" do
@@ -62,9 +62,9 @@ describe "Article" do
     describe "form" do
       it { should have_selector 'h2', text: "Editing article" }
       it { should have_button 'Edit article' }
-      it { should have_placeholder 'Enter article content here ...', text: article.content }
+      it { should have_placeholder 'Enter article content here ...', value: article.content }
       it { should have_placeholder 'Article title', value: article.title }
-      it { should have_placeholder "Tags (separated by commas)", value: article.tag_list }
+      it { should have_placeholder "Tags (separated by commas)", value: article.tag_list.to_s }
     end
 
     context "submitted" do

@@ -16,7 +16,7 @@ describe "Tags" do
     end
 
     it "puts tag in filter" do
-      should have_placeholder "Tags filter", value: 'tag1'
+      should have_placeholder "Tags filter", text: 'tag1'
     end
 
     it "shows tagged articles" do
@@ -36,7 +36,7 @@ describe "Tags" do
     end
 
     it "puts tags in filter" do
-      should have_placeholder "Tags filter", value: 'tag1,tag2'
+      should have_placeholder "Tags filter", text: 'tag1,tag2'
     end
 
     it "shows tagged articles" do

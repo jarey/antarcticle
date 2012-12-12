@@ -17,8 +17,8 @@ describe "Authentication" do
     context "with valid credentials" do
       let(:user) { FactoryGirl.create(:user) }
       before do
-        fill_in_placeholder "Username", user.username
-        fill_in_placeholder "Password", "1234"
+        fill_in "Username", with: user.username
+        fill_in "Password", with: "1234"
         click_button "Sign in"
       end
 

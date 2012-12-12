@@ -8,12 +8,18 @@ end
 
 RSpec::Matchers.define :have_placeholder do |placeholder, *args|
   match do |page|
-    page.should have_selector("input[placeholder='#{placeholder}'], textarea[placeholder='#{placeholder}']", *args)
+    page.should have_xpath("//input[@placeholder='#{placeholder}'] | //textarea[@placeholder='#{placeholder}']", args)
   end
-end
 
-def fill_in_placeholder(placeholder, value)
-  find("input[placeholder='#{placeholder}'], textarea[placeholder='#{placeholder}']").set value
+  ##TODO
+  #failure_message_for_should do |actual|
+  #end
+
+  #failure_message_for_should_not do |actual|
+  #end
+
+  #description do
+  #end
 end
 
 def sign_in(user)
@@ -23,7 +29,7 @@ def sign_in(user)
   fill_in_placeholder "Password", "1234"
   click_button "Sign in"
 
-  cookies[:remember_token] = user.remember_token
+  #cookies[:remember_token] = user.remember_token
 end
 
 def sign_out
