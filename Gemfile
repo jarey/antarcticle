@@ -4,7 +4,7 @@ gem 'rails', '3.2.9'
 # jquery
 gem 'jquery-rails'
 # sass version of twitter bootstrap
-gem "bootstrap-sass", "2.2.1.0"
+gem "bootstrap-sass", "2.2.1.1"
 # fake data generator for filling database
 gem "ffaker"
 # markdown processor
@@ -50,7 +50,7 @@ end
 
 group :test do
   # testing by simulating user interaction
-  gem 'capybara', '~> 1.1.3'
+  gem 'capybara', '2.0.1'
   # factories for test data
   gem 'factory_girl_rails', '4.1.0'
   # testing external http requests
