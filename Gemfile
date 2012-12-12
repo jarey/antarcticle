@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.9'
 # jquery
 gem 'jquery-rails'
 # sass version of twitter bootstrap
-gem "bootstrap-sass", "~> 2.1.1.0"
+gem "bootstrap-sass", "2.2.1.0"
 # fake data generator for filling database
 gem "ffaker"
 # markdown processor
@@ -18,9 +18,9 @@ gem 'cancan', '1.6.8'
 # tags
 gem 'acts-as-taggable-on', '2.3.3'
 # new relic performancy monitor
-gem 'newrelic_rpm'
+gem 'newrelic_rpm', '3.5.3.25'
 # production server
-gem 'unicorn'
+gem 'unicorn', '4.5.0'
 
 group :production do
   # production db driver
@@ -29,11 +29,11 @@ end
 
 group :development, :test do
   # development and testing db driver
-  gem 'sqlite3', '1.3.5'
+  gem 'sqlite3', '1.3.6'
   # testing with rspecs
-  gem 'rspec-rails', '2.11.0'
+  gem 'rspec-rails', '2.12.0'
   # running tests faster
-  gem 'spork-rails'
+  gem 'spork-rails', '3.2.1'
 end
 
 group :development do
@@ -65,12 +65,13 @@ group :assets do
   # additional icon font to use with bootstrap
   gem 'font-awesome-sass-rails'
   # speed up assets compilation
-  gem 'turbo-sprockets-rails3'
+  gem 'turbo-sprockets-rails3', '0.3.4'
   # js compressor
   gem 'uglifier', '>= 1.2.3'
 
   # js environment
   gem 'execjs'
-  gem 'therubyracer'
+  gem 'libv8', '~> 3.11.8'
+  gem 'therubyracer', '0.11.0'
 end
 
