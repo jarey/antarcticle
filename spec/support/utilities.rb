@@ -25,8 +25,8 @@ end
 def sign_in(user)
   visit signin_path
 
-  fill_in_placeholder "Username", user.username
-  fill_in_placeholder "Password", "1234"
+  fill_in "Username", with: user.username
+  fill_in "Password", with: "1234"
   click_button "Sign in"
 
   #cookies[:remember_token] = user.remember_token
