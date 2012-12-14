@@ -68,7 +68,9 @@ group :assets do
   gem 'turbo-sprockets-rails3', '0.3.4'
   # js compressor
   gem 'uglifier', '>= 1.2.3'
+end
 
+group :js_env do
   # js environment
   gem 'execjs'
   gem 'therubyracer', '0.11.0'

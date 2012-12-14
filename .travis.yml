@@ -10,3 +10,4 @@ script:
   - bundle exec rspec spec/
 before_script:
   - mysql -e 'create database antarcticle_test'
+bundler_args: --without=js_env
