@@ -2,7 +2,7 @@
 <div class="row">
   <div class="span10 offset1">
     <div class="clearfix">
-      <div class="pull-left span8" style="line-height:41px;margin-left:70px">
+      <div class="pull-left" style="line-height:41px;margin-left:70px">
         <%= form_tag tags_filter_path, method: :get do %>
           <%= text_field_tag :tags, params[:tags], class: "span7", id: "tags_filter", placeholder: "Tags filter" %>
           <%= submit_tag 'Find', name: nil, class: "btn btn-info" %>

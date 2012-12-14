@@ -1,68 +1,64 @@
-div.tagsinput {
-  min-height: 22px;
-  min-width: 200px;
-  border: 1px solid #CCC;
-  background: #FFF;
-  padding: 2px 2px 2px 5px;
+.tags-input {
   display: inline-block;
-  line-height: 14px;
+  margin: 0;
+  padding: 2px 2px 2px 5px;
+  min-width: 200px;
+  min-height: 22px;
+
+  border: 1px solid #CCC;
   border: 4px solid white;
+  background: #FFF;
   -webkit-box-shadow: inset 0 0 8px  rgba(0,0,0,0.1), 0 0 16px rgba(0,0,0,0.1);
   -moz-box-shadow: inset 0 0 8px  rgba(0,0,0,0.1), 0 0 16px rgba(0,0,0,0.1);
   box-shadow: inset 0 0 8px  rgba(0,0,0,0.1), 0 0 16px rgba(0,0,0,0.1);
-  margin-bottom: 3px;
+  list-style: none;
+  line-height: 14px;
 
   &:hover {
     cursor: text;
   }
 
-  span.tag {
-    color: rgb(102, 102, 102);
-    font-size: 11px;
+  li {
     float: left;
-    background: image-url("tags/disc.png") no-repeat scroll 4px center rgb(222, 231, 248);
-    border: 1px solid rgb(202, 216, 243);
-    padding: 2px 0px 2px 13px;
-    -moz-border-radius: 8px 4px 4px 8px;
-    -webkit-border-radius: 8px 4px 4px 8px;
-    border-radius: 8px 4px 4px 8px;
     margin: 2px 5px 2px 0px;
+    padding: 2px 0px 2px 13px;
 
-    a {
-      font-weight: bold;
-      text-indent: -2000px;
-      display: inline-block;
-      width: 15px;
-      height: 100%;
-      cursor: pointer;
-      border-left: 1px dotted rgb(126, 157, 214);
-      margin: 0px 2px 0px 5px;
-      background: image-url("tags/cross.png") no-repeat scroll center center transparent;
+    border: 1px solid rgb(202, 216, 243);
+    -webkit-border-radius: 8px 4px 4px 8px;
+    -moz-border-radius: 8px 4px 4px 8px;
+    border-radius: 8px 4px 4px 8px;
+
+    background: image-url("tags/disc.png") no-repeat scroll 4px center rgb(222, 231, 248);
+    color: rgb(102, 102, 102);
+    word-break: break-word;
+    font-size: 11px;
+    line-height: normal;
+  }
+
+  .remove-tag {
+    display: inline-block;
+    margin: 0px 2px 0px 5px;
+    width: 15px;
+    height: 100%;
+
+    border-left: 1px dotted rgb(126, 157, 214);
+    background: image-url("tags/cross.png") no-repeat scroll center center transparent;
+    text-indent: -2000px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .tags-inner-input {
+    margin: 0;
+    padding: 2px 0 0 0;
+
+    outline: none;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+
+    &:focus {
+      @extend .tags-inner-input;
     }
   }
-
-  input {
-    width: 80px;
-    font-size: 13px;
-    border: 1px solid transparent;
-    background: transparent;
-    outline: 0;
-  }
-
-  div {
-    display: inline;
-    /*float:left;*/
-  }
-
-  .tags_clear {
-    clear: both;
-    width: 100%;
-    height: 0;
-  }
-
-  .not_valid {
-    background: #FBD8DB!important;
-    color: #90111A!important;
-  }
 }
-
