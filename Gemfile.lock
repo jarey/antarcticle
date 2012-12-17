@@ -88,6 +88,7 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.7.5)
     kgio (2.7.4)
+    libv8 (3.11.8.4)
     libwebsocket (0.1.7.1)
       addressable
       websocket
@@ -220,6 +221,7 @@ DEPENDENCIES
   ffaker
   font-awesome-sass-rails
   jquery-rails
+  libv8 (~> 3.11.8)
   mysql2
   newrelic_rpm (= 3.5.3.25)
   quiet_assets

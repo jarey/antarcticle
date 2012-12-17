@@ -72,6 +72,7 @@ end
 
 group :js_env do
   # js environment
+  gem 'libv8', '~> 3.11.8'
   gem 'execjs'
   gem 'therubyracer', '0.11.0'
 end
