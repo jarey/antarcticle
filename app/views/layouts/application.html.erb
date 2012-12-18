@@ -7,7 +7,7 @@
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
-  <title>Antarcticle - <%= yield_for(:title, "Articles") %></title>
+  <title><%= CONFIG["title"] || "Antarcticle" %> - <%= yield_for(:title, "Articles") %></title>
 </head>
 <body>
     <div id="page-wrapper">

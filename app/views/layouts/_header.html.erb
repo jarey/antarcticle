@@ -7,17 +7,17 @@
         <span class="icon-bar"></span>
       </a>
       <%= link_to root_path, class: "brand" do %>
-        <i class="icon-book"></i> Antarcticle
+        <i class="icon-book"></i> <%= CONFIG["title"] || "Antarcticle" %>
       <% end %>
       <div class="nav-collapse collapse">
-        <ul class="nav">
+        <!--<ul class="nav">
           <li class="divider-vertical"></li>
           <li>
             <%= link_to root_path do %>
                 <i class="icon-home icon-white"></i> Home
             <% end %>
           </li>
-        </ul>
+        </ul>-->
         <div class="pull-right">
           <ul class="nav pull-right">
             <% if signed_in? %>
