@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'webmock/rspec'
 require 'poulpe_authentication_client'
 
 describe PoulpeAuthenticationClient do
