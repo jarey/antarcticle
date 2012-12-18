@@ -2,8 +2,11 @@ require 'bundler/capistrano'
 require 'rvm/capistrano'
 load 'deploy/assets'
 
-# rvm installation type
-set :rvm_type, :system
+# multiple deploy environments
+set :stages, %w(testing production)
+# default deploy env
+set :default_stage, "testing"
+require 'capistrano/ext/multistage'
 
 # application name
 set :application, "antarcticle"
@@ -11,13 +14,10 @@ set :application, "antarcticle"
 set :scm, :git
 # repository url
 set :repository,  "git@jtalks.org:antarcticle"
-# branch to be deployed
-set :branch, "develop"
 
-#
-#default_run_options[:pty] = true
 # deployer user
 set :user, "antarcticle"
+# application path
 set :deploy_to, "/home/antarcticle/apps/#{application}"
 # don't use sudo in commands
 set :use_sudo, false
@@ -26,12 +26,6 @@ set :keep_releases, 3
 # only fetch the changes since the last deploy
 set :deploy_via, :remote_cache
 
-role :web, "jtalks.org"                          # Your HTTP server, Apache/etc
-role :app, "jtalks.org"                          # This may be the same as your `Web` server
-role :db,  "jtalks.org", :primary => true # This is where Rails migrations will run
-
-# compile assets with given relative root
-set :asset_env, "RAILS_GROUPS=assets RAILS_RELATIVE_URL_ROOT='/antarcticle'"
 # skip test and development dependencies
 set :bundle_without, [:development, :test]
 
@@ -47,12 +41,13 @@ namespace :deploy do
 end
 
 task :symlink_configs do
-  # database
+  # database config
   run "rm #{release_path}/config/database.yml"
   run "ln -sfn #{shared_path}/config/database.yml #{release_path}/config/database.yml"
   # unicorn init script
-  run "ln -sfn #{release_path}/config/unicorn_antarcticle.sh /etc/init.d/unicorn_antarcticle"
-  # application
+  unicorn_config = from_template("config/unicorn_antarcticle.sh.erb")
+  put unicorn_config, "/etc/init.d/unicorn_#{application}"
+  # application config
   run "ln -sfn #{shared_path}/config/application.yml #{release_path}/config/application.yml"
 end
 after "bundle:install", "symlink_configs"
@@ -64,4 +59,11 @@ namespace :rake_ do
   task :invoke do
     run("cd #{deploy_to}/current; /usr/bin/env rake #{ENV['task']} RAILS_ENV=#{rails_env}")
   end
+end
+
+# render template
+def from_template(file)
+  require 'erb'
+  template = File.read(File.join(File.dirname(__FILE__), "..", file))
+  result = ERB.new(template).result(binding)
 end

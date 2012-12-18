@@ -10,12 +10,16 @@
 ### END INIT INFO
 set -e
 
-# Feel free to change any of the following variables for your app:
 TIMEOUT=${TIMEOUT-60}
-APP_ROOT=/home/antarcticle/apps/antarcticle/current
+APP_ROOT=<%= current_path %>
 PID=$APP_ROOT/tmp/pids/unicorn.pid
-CMD="cd $APP_ROOT; RAILS_RELATIVE_URL_ROOT='/antarcticle' bundle exec unicorn -D -c $APP_ROOT/config/unicorn.rb -E production"
-AS_USER=antarcticle
+RAILS_ENV=<%= rails_env %>
+<% if relative_url_root %>
+  CMD="cd $APP_ROOT; RAILS_RELATIVE_URL_ROOT='<%= relative_url_root %>' bundle exec unicorn -D -c $APP_ROOT/config/unicorn.rb -E $RAILS_ENV"
+<% else %>
+  CMD="cd $APP_ROOT; bundle exec unicorn -D -c $APP_ROOT/config/unicorn.rb -E $RAILS_ENV"
+<% end %>
+AS_USER=<%= user %>
 set -u
 
 OLD_PIN="$PID.oldbin"
