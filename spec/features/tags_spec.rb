@@ -10,22 +10,46 @@ describe "Tags" do
   end
 
   describe "one tag" do
-    let(:tag) { 'tag1' }
-    before do
-      visit tag_path(tag)
+    context "simple one-word" do
+      let(:tag) { 'tag1' }
+      before do
+        visit tag_path(tag)
+      end
+
+      it "puts tag in filter" do
+        should have_placeholder "Tags filter", text: tag
+      end
+
+      it "shows tagged articles" do
+        should have_content(@article1.title)
+        should have_content(@article3.title)
+      end
+
+      it "doesnt show not tagged articles" do
+        should_not have_content(@article2.title)
+      end
     end
 
-    it "puts tag in filter" do
-      should have_placeholder "Tags filter", text: 'tag1'
-    end
+    context "with special characters" do
+      let(:tag) { '<t @/ g)' }
+      before do
+        @article = FactoryGirl.create(:article, tag_list: tag)
+        visit tag_path(tag)
+      end
 
-    it "shows tagged articles" do
-      should have_content(@article1.title)
-      should have_content(@article3.title)
-    end
+      it "puts tag in filter" do
+        should have_placeholder "Tags filter", text: tag
+      end
 
-    it "doesnt show not tagged articles" do
-      should_not have_content(@article2.title)
+      it "shows tagged article" do
+        should have_content(@article.title)
+      end
+
+      it "doesnt shows other articles" do
+        should_not have_content(@article1.title)
+        should_not have_content(@article2.title)
+        should_not have_content(@article3.title)
+      end
     end
   end
 

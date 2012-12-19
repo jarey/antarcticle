@@ -1,6 +1,7 @@
 class TagsController < ApplicationController
   def index
     authorize! :read, Article
+    params[:tags] = CGI.unescape(params[:tags])
     @articles = Article.get_page_tagged params[:page], params[:tags]
     render 'articles/index'
   end
