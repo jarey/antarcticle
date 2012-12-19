@@ -257,13 +257,24 @@ article.entry {
       background-color: rgb(251, 251, 251);
       box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
 
-      &>li:not(:first-child) {
-        margin-left: 8px;
-      }
-
       .tags {
+        margin: 0;
         li {
-          white-space:nowrap;
+          white-space: nowrap;
+          float: left;
+
+          &:not(:last-child) {
+            margin-right: 5px;
+          }
+
+          i {
+            float: left;
+          }
+
+          a {
+            display: inline-block;
+            white-space: normal;
+          }
         }
       }
     }
