@@ -27,9 +27,9 @@
       </li>
       <li class="pull-right">
         <ul class="tags">
-          <% article.tags.map(&:name).each do |tag| %>
+          <% article.tags.each do |tag| %>
             <li>
-              <i class="icon-tags"></i><%= link_to tag, tag_path(sanitize(tag.gsub('/', '%2F'))) %>
+              <i class="icon-tags"></i><%= link_to tag, tag_path(tag) %>
             </li>
           <% end %>
         </ul>

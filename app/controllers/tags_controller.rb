@@ -9,7 +9,7 @@ class TagsController < ApplicationController
     if params[:tags].blank?
       redirect_to articles_path
     else
-      redirect_to tag_path(params[:tags].gsub('/', '%2F'))
+      redirect_to tag_path(params[:tags])
     end
   end
 end

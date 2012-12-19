@@ -20,7 +20,8 @@ $.fn.extend
     tagInput = $("<input type=\"text\" class=\"tags-inner-input\" />")
 
     createTag = (tag) ->
-      "<li>#{tag}<a href=\"#\" class=\"remove-tag\">x</a></li>"
+      escapedTag = $('<div></div>').text(tag).html()
+      "<li>#{escapedTag}<a href=\"#\" class=\"remove-tag\">x</a></li>"
 
     # construct tags list and input for new tag
     html = "<ul class=\"#{settings.class}\">"
