@@ -32,6 +32,7 @@ describe "routing" do
       get("/tags/node.js").should route_to("tags#index", tags: "node.js")
       get("/tags/tag1+tag2").should route_to("tags#index", tags: "tag1+tag2")
       get("/tags/tag.1+tag.2").should route_to("tags#index", tags: "tag.1+tag.2")
+      get("/tags/%3Cstyle%3E%20*%7Bborder:%20solid%201px%20red;%7D%3C/style%3E").should route_to("tags#index", tags: "<style> *{border: solid 1px red;}</style>")
     end
 
     it "should route to tags#tags_filter" do
