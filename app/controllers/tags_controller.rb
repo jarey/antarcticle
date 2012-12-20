@@ -10,7 +10,7 @@ class TagsController < ApplicationController
     if params[:tags].blank?
       redirect_to articles_path
     else
-      redirect_to tag_path(params[:tags])
+      redirect_to tag_path(CGI.escape params[:tags])
     end
   end
 end
