@@ -103,3 +103,7 @@ $.fn.extend
       updateValue()
       tagInput.focus()
       updatePlaceholder()
+
+    # add tag before form submitted
+    tagInput.closest('form').on 'submit', (e) ->
+      addTag()
