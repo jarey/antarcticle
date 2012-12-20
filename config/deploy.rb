@@ -28,6 +28,7 @@ set :deploy_via, :remote_cache
 
 # skip test and development dependencies
 set :bundle_without, [:development, :test]
+set :relative_url_root, nil
 
 # unicorn management
 namespace :deploy do
