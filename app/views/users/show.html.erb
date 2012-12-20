@@ -16,16 +16,15 @@
       </div>
     </header>
 
-    <% if @user_articles.any? %>
-        <%= form_tag user_path(@user), style: "margin: 15px 0 0 70px", method: :get do %>
-          <%= text_field_tag :tags, params[:tags], class: "span7", id: "tags_filter", placeholder: "Tags filter" %>
-          <%= submit_tag 'Find', name: nil, class: "btn btn-info" %>
-        <% end %>
+    <%= form_tag user_path(@user), style: "margin: 15px 0 0 70px", method: :get do %>
+      <%= text_field_tag :tags, params[:tags], class: "span7", id: "tags_filter", placeholder: "Tags filter" %>
+      <%= submit_tag 'Find', name: nil, class: "btn btn-info" %>
+    <% end %>
 
+    <% if @user_articles.any? %>
         <section class="articles-list">
           <%= render @user_articles %>
         </section>
-
         <%= will_paginate @user_articles %>
     <% else %>
         <div class="centralized-inputs">
