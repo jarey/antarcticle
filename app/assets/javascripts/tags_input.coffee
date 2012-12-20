@@ -79,9 +79,9 @@ $.fn.extend
         e.preventDefault()
         addTag()
       # create tag (if valid) when pressed enter. event will be propagated further
-      else if (event.which == 13 || event.keyCode == 13)
-        addTag()
-        true
+      #else if (event.which == 13 || event.keyCode == 13)
+        #addTag()
+        #true
 
     # remove last tag when backspace pressed
     tagInput.on 'keydown', (e) ->
@@ -104,6 +104,7 @@ $.fn.extend
       tagInput.focus()
       updatePlaceholder()
 
-    # add tag before form submitted
+    # create tag (if valid) when pressed enter. event will be propagated further
     tagInput.closest('form').on 'submit', (e) ->
-      addTag()
+      addTag() # TODO: don't propagate when validation fails
+      true
