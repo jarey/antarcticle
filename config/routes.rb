@@ -10,7 +10,7 @@ Antarcticle::Application.routes.draw do
 
   match '/users/:username', to: 'users#show', as: :user, :username => /[^\/]*/
 
-  #match '/tags/:tags', to: 'tags#index', as: :tag, :tags => /[^\/]*/
   match '/tags/:tags', to: 'tags#index', as: :tag, :tags => /.*/
   get '/tags_filter', to: 'tags#filter', as: :tags_filter
+  match '/tags', to: redirect("/")
 end

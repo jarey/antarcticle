@@ -10,6 +10,7 @@ class Article < ActiveRecord::Base
 
   validates :title, presence: true, length: { maximum: 60 }
   validates_presence_of :user_id
+  validates_with TagsValidator
 
   default_scope order: 'articles.created_at DESC'
 

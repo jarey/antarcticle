@@ -46,7 +46,7 @@ describe Article do
   describe "order" do
     before do
       @article2 = user.articles.build(title: "Article title",
-                                      content: "Lorem ipsum",)
+                                      content: "Lorem ipsum")
       @article2.created_at = 1.minute.since
       @article2.save
       @article.save
@@ -64,5 +64,12 @@ describe Article do
     end
     its(:description) { should_not be_blank }
     its(:description) { should have(300).characters }
+  end
+
+  describe "tags validator" do
+    before do
+      @article.tag_list = ".,."
+    end
+    it { should_not be_valid }
   end
 end

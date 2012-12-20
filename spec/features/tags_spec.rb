@@ -29,28 +29,6 @@ describe "Tags" do
         should_not have_content(@article2.title)
       end
     end
-
-    context "with special characters" do
-      let(:tag) { '<t @/ g)' }
-      before do
-        @article = FactoryGirl.create(:article, tag_list: tag)
-        visit tag_path(tag)
-      end
-
-      it "puts tag in filter" do
-        should have_placeholder "Tags filter", text: tag
-      end
-
-      it "shows tagged article" do
-        should have_content(@article.title)
-      end
-
-      it "doesnt shows other articles" do
-        should_not have_content(@article1.title)
-        should_not have_content(@article2.title)
-        should_not have_content(@article3.title)
-      end
-    end
   end
 
   describe "multiple tags" do
