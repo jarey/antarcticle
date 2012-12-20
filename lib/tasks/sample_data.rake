@@ -8,8 +8,8 @@ namespace :db do
 end
 
 def make_users
-  update_user("user_1", ["John", "Smith"])
-  admin = update_user("admin")
+  update_user("user_1", %w(John Smith))
+  admin = update_user("admin", %w(admin admin))
   admin.admin = true
   admin.save
 
