@@ -26,7 +26,7 @@ describe "Tags" do
       end
 
       it "doesnt show not tagged articles" do
-        should have_content(@article2.title)
+        should_not have_content(@article2.title)
       end
     end
   end
