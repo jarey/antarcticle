@@ -32,8 +32,6 @@ group :development, :test do
   gem 'sqlite3', '1.3.7'
   # testing with rspecs
   gem 'rspec-rails', '2.12.2'
-  # running tests faster
-  gem 'spork-rails', '3.2.1'
 end
 
 group :development do

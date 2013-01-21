@@ -15,6 +15,14 @@
 /tmp
 
 # Ignore project files
-rails_best_practices_output.html
 /.idea
+
+# local config
 config/application.yml
+
+# vim tags
+/tags
+
+# zeus files
+/custom_plan.rb
+/zeus.json
