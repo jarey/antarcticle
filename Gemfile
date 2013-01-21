@@ -1,16 +1,16 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.9'
+gem 'rails', '3.2.11'
 # jquery
 gem 'jquery-rails'
 # sass version of twitter bootstrap
-gem "bootstrap-sass", "2.2.1.1"
+gem "bootstrap-sass", "2.2.2"
 # fake data generator for filling database
 gem "ffaker"
 # markdown processor
 gem 'redcarpet', '2.2.2'
 # serving pagination
-gem 'will_paginate', '3.0.3'
+gem 'will_paginate', '3.0.4'
 # using bootstrap
 gem 'bootstrap-will_paginate', '0.0.9'
 # authorization
@@ -18,7 +18,7 @@ gem 'cancan', '1.6.8'
 # tags
 gem 'acts-as-taggable-on', '2.3.3'
 # new relic performancy monitor
-gem 'newrelic_rpm', '3.5.3.25'
+gem 'newrelic_rpm'
 # production server
 gem 'unicorn', '4.5.0'
 
@@ -29,9 +29,9 @@ end
 
 group :development, :test do
   # development and testing db driver
-  gem 'sqlite3', '1.3.6'
+  gem 'sqlite3', '1.3.7'
   # testing with rspecs
-  gem 'rspec-rails', '2.12.0'
+  gem 'rspec-rails', '2.12.2'
   # running tests faster
   gem 'spork-rails', '3.2.1'
 end
@@ -50,7 +50,7 @@ end
 
 group :test do
   # testing by simulating user interaction
-  gem 'capybara', '2.0.1'
+  gem 'capybara', '2.0.2'
   # factories for test data
   gem 'factory_girl_rails', '4.1.0'
   # testing external http requests
@@ -65,15 +65,15 @@ group :assets do
   # additional icon font to use with bootstrap
   gem 'font-awesome-sass-rails'
   # speed up assets compilation
-  gem 'turbo-sprockets-rails3', '0.3.4'
+  gem 'turbo-sprockets-rails3', '0.3.6'
   # js compressor
   gem 'uglifier', '>= 1.2.3'
 end
 
 group :js_env do
   # js environment
-  gem 'libv8', '~> 3.11.8'
+  gem 'libv8', '3.11.8.13'
   gem 'execjs'
-  gem 'therubyracer', '0.11.0'
+  gem 'therubyracer', '0.11.3'
 end
 
