@@ -10,14 +10,17 @@
         <i class="icon-book"></i> <%= CONFIG["title"] || "Antarcticle" %>
       <% end %>
       <div class="nav-collapse collapse">
-        <!--<ul class="nav">
-          <li class="divider-vertical"></li>
-          <li>
-            <%= link_to root_path do %>
-                <i class="icon-home icon-white"></i> Home
+        <% if CONFIG.has_key? "menu" %>
+          <ul class="nav custom-menu">
+            <li class="divider-vertical"></li>
+            <% CONFIG["menu"].each do |entry| %>
+              <li>
+                <%= link_to entry["name"], entry["url"] %>
+              </li>
+              <li class="divider-vertical"></li>
             <% end %>
-          </li>
-        </ul>-->
+          </ul>
+        <% end %>
         <div class="pull-right">
           <ul class="nav pull-right">
             <% if signed_in? %>
