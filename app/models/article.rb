@@ -9,6 +9,7 @@ class Article < ActiveRecord::Base
   before_save :create_description
 
   validates :title, presence: true, length: { maximum: 60 }
+  validates_length_of :content, maximum: 65000
   validates_presence_of :user_id
   validates_with TagsValidator
 

@@ -30,6 +30,13 @@ describe Article do
     end
   end
 
+  describe "content length" do
+    context "is too long" do
+     before { @article.content = "a" * 65001 }
+     it { should_not be_valid }
+    end
+  end
+
   context "when user is not present" do
     before { @article.user_id = nil }
     it { should_not be_valid }
