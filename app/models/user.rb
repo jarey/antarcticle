@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   attr_accessible :username, :first_name, :last_name
 
   has_many :articles, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   before_save :create_remember_token
 

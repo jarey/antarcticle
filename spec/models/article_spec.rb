@@ -15,6 +15,7 @@ describe Article do
   it { should respond_to(:description) }
   it { should respond_to(:tag_list) }
   it { should respond_to(:tags) }
+  it { should respond_to(:comments) }
   its(:user) { should == user }
 
   it { should be_valid}

@@ -11,6 +11,7 @@ describe User do
   it { should respond_to(:last_name) }
   it { should respond_to(:remember_token) }
   it { should respond_to(:admin?) }
+  it { should respond_to(:comments) }
 
   specify { should be_valid }
   specify { should_not be_admin }

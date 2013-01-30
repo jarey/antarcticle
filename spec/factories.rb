@@ -11,7 +11,13 @@ FactoryGirl.define do
 
   factory :article do
     sequence(:title) { |n| "Article #{n} title" }
-    content "Lorem ipsum"
+    sequence(:content) { |n| "Lorem ipsum #{n}" }
     user
+  end
+
+  factory :comment do
+    sequence(:content) { |n| "Comment content #{n}" }
+    user
+    article
   end
 end
