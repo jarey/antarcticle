@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20130130103656) do
 
   create_table "comments", :force => true do |t|
     t.integer  "user_id",    :null => false
+    t.integer  "article_id", :null => false
     t.text     "content"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

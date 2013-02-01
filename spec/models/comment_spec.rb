@@ -15,6 +15,7 @@ describe Comment do
   it { should respond_to(:content) }
   it { should respond_to(:article) }
   its(:user) { should == user }
+  its(:article) { should == article }
 
   it { should be_valid }
 
