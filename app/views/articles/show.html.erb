@@ -60,5 +60,20 @@
 
     </article>
 
+    <section class="comments">
+      <% if @article.comments.any? %>
+        <%= render @article.comments %>
+      <% else %>
+        <div class="centralized-inputs">
+          <h3>There is no comments</h3>
+        </div>
+      <% end %>
+
+    <%= form_for([@article, Comment.new]) do |f| %>
+      <%= f.text_area :content, class: "span7", rows: 25, placeholder: "Enter your comment here ..." %>
+      <%= f.submit "Post", class: "btn btn-primary btn-large pull-right" %>
+    <% end %>
+    </section>
+
   </div>
 </div>

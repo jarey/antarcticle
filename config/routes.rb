@@ -1,7 +1,9 @@
 Antarcticle::Application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
-  resources :articles
+  resources :articles do
+    resources :comments, only: [:create, :update, :destroy]
+  end
 
   root :to => 'articles#index'
 

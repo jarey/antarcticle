@@ -73,4 +73,18 @@ describe "routing" do
     end
 
   end
+
+  describe "comments routing" do
+    it "routes to #create" do
+      post("/articles/1/comments").should route_to("comments#create", article_id: "1")
+    end
+
+    it "routes to #update" do
+      put("/articles/1/comments/2").should route_to("comments#update", article_id: "1", id: "2")
+    end
+
+    it "routes to #destroy" do
+      delete("/articles/1/comments/2").should route_to("comments#destroy", article_id: "1", id: "2")
+    end
+  end
 end
