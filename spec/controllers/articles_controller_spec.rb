@@ -17,16 +17,16 @@ describe ArticlesController do
   describe "#update" do
     it "authorizes update" do
       controller.should_receive(:authorize!).with(:update, article)
-      put :update, id: article_id
+      put :update, id: article_id, article: attributes
     end
 
     it "tries to update article" do
-      article.should_receive(:update_attributes)
-      put :update, id: article_id
+      article.should_receive(:update_attributes).with(attributes)
+      put :update, id: article_id, article: attributes
     end
 
     context "when attributes are valid" do
-      before { put :update, id: article_id }
+      before { put :update, id: article_id, article: attributes }
 
       it "redirects to article" do
         should redirect_to(article)

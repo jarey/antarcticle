@@ -1,3 +1,3 @@
-<article class="comment" id="comment_<%= comment.id %>">
+<article class="comment<%= if comment.user == comment.article.user then " author-comment" else "" end %>" id="comment_<%= comment.id %>">
   <%= comment.content %>
 </article>

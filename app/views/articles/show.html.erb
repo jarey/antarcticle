@@ -60,7 +60,7 @@
 
     </article>
 
-    <section class="comments">
+    <section class="comments" id="comments">
       <% if @article.comments.any? %>
         <%= render @article.comments %>
       <% else %>
@@ -69,10 +69,16 @@
         </div>
       <% end %>
 
-    <%= form_for([@article, Comment.new]) do |f| %>
-      <%= f.text_area :content, class: "span7", rows: 25, placeholder: "Enter your comment here ..." %>
-      <%= f.submit "Post", class: "btn btn-primary btn-large pull-right" %>
-    <% end %>
+      <% if can? :create, Comment %>
+        <%= form_for([@article, @comment || @article.comments.new],
+                     url: article_comments_path(@article, anchor: "comments_form"),
+                     html: { id: "comments_form" }) do |f| %>
+          <%= f.text_area :content, class: "span7", rows: 25, placeholder: "Enter your comment here ..." %>
+          <%= f.submit "Post", class: "btn btn-primary btn-large pull-right" %>
+        <% end %>
+      <% else %>
+        Sign in to post comments
+      <% end %>
     </section>
 
   </div>
