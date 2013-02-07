@@ -1,3 +1,6 @@
-<article class="comment<%= if comment.user == comment.article.user then " author-comment" else "" end %>" id="comment_<%= comment.id %>">
-  <%= comment.content %>
+<article class="comment<%= if comment.user == comment.article.user then " comment-author" else " comment-other" end %>" id="comment_<%= comment.id %>">
+  <header><%= comment.user.username %><time datetime="<%= comment.created_at %>"><%= comment.created_at.strftime('%e %b %Y') %></time></header>
+  <div>
+    <%= comment.content %>
+  </div>
 </article>

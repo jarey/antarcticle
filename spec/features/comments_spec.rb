@@ -73,23 +73,22 @@ describe Comment do
       before do
        @comment = FactoryGirl.create(:comment, article: article)
        @comment_author = FactoryGirl.create(:comment, article: article, user: user)
+       @comments = [@comment, @comment_author]
        visit article_path(article)
       end
 
-      it "shows comments" do
-        find('#comments').should have_content @comment.content
-        find('#comments').should have_content @comment_author.content
+      it "shows comments details" do
+        @comments.each do |comment|
+          find("#comments #comment_#{comment.id}").should have_content comment.user.username
+          find("#comments #comment_#{comment.id}").should have_css('time')
+          find("#comments #comment_#{comment.id}").should have_content comment.content
+        end
       end
 
       it "article author comments highlighted" do
         #TODO check this is exactly author's comment
-        find('#comments').should have_css('.author-comment', count: 1)
+        find('#comments').should have_css('.comment-author', count: 1)
       end
-
-      #describe "comment details" do
-        #context "as author"
-        #context "as other user"
-      #end
     end
 
     context "is empty" do
