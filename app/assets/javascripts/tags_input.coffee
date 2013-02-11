@@ -94,7 +94,7 @@ $.fn.extend
         updatePlaceholder()
 
     # remove tag when "X" link clicked
-    $('.remove-tag').live 'click', (e) ->
+    tagsList.on 'click','.remove-tag', (e) ->
       ths = $(this)
       e.preventDefault()
       tag = ths.parent().val()
