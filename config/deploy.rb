@@ -13,7 +13,7 @@ set :application, "antarcticle"
 # VCS type
 set :scm, :git
 # repository url
-set :repository,  "git@jtalks.org:antarcticle"
+set :repository, "git@github.com:jtalks-org/antarcticle.git"
 
 # deployer user
 set :user, "antarcticle"
