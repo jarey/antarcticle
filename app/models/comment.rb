@@ -5,7 +5,8 @@ class Comment < ActiveRecord::Base
   validates_presence_of :user_id
   validates_presence_of :article_id
 
-  default_scope order: 'comments.created_at ASC'
+  #TODO avoid extra fetching
+  default_scope includes(:user, :article).order('comments.created_at ASC')
 
   belongs_to :user
   belongs_to :article

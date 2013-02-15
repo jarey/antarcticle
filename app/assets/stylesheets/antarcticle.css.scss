@@ -287,17 +287,17 @@ article.entry {
 }
 
 .comments {
-  .comment {
+  .comment-bubble {
     word-break:break-word;
     background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 0 6px #B2B2B2;
+    border-radius: 3px;
+    box-shadow: 0 0 3px #B2B2B2;
     /*display: inline-block;*/
     display: block;
     padding: 10px 18px;
     position: relative;
     vertical-align: top;
-    margin: 5px 20px;
+    margin: 5px 30px 5px 30px;
 
     &:before {
       background-color: white;
@@ -318,21 +318,59 @@ article.entry {
       border-bottom: 1px dashed #EEE;
     }
 
-    &.comment-author {
-      /*box-shadow: 0 0 15px rgba(233, 150, 122, 1);*/
-
+    &.comment-bubble-author {
       &:before {
-        box-shadow: 3px -3px 3px 0 rgba(178, 178, 178, .4);
+        box-shadow: 2px -2px 2px 0 rgba(178, 178, 178, .4);
         right: -9px;
       }
     }
 
-    &.comment-other {
+    &.comment-bubble-other {
       &:before {
         box-shadow: -2px 2px 2px 0 rgba(178, 178, 178, .4);
         left: -9px;
       }
     }
+  }
+
+  .comment {
+    position: relative;
+
+    time {
+      font-style: italic;
+      font-size: 12px;
+    }
+
+    .toolb {
+      position: absolute;
+      a {
+        display: block;
+        margin-bottom: 3px;
+      }
+    }
+
+    &.comment-other .toolb {
+      right: 2px;
+      top: 1px;
+    }
+
+    &.comment-author .toolb {
+      left: 2px;
+      top: 1px;
+    }
 
   }
+
+  form {
+    label {
+      margin: 0;
+    }
+    .control-group {
+      margin: 0;
+    }
+    textarea {
+      padding: 0;
+    }
+  }
+
 }

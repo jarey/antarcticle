@@ -46,6 +46,10 @@ describe CommentsController do
     end
   end
 
+  describe "#edit" do
+    #TODO
+  end
+
   describe "#create" do
     let(:current_user) { mock_model(User) }
 

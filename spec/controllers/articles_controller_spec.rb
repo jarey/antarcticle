@@ -100,6 +100,11 @@ describe ArticlesController do
   end
 
   describe "#show" do
+    let(:comment) { mock_model(Comment) }
+    before do
+      Comment.stub(:new).and_return(comment)
+    end
+
     it "authorizes show" do
       controller.should_receive(:authorize!).with(:read, article)
       get :show, id: article_id
@@ -108,6 +113,11 @@ describe ArticlesController do
     it "assigns @article" do
       get :show, id: article_id
       assigns(:article).should be article
+    end
+
+    it "creates new empty comment" do
+      get :show, id: article_id
+      assigns(:comment).should be comment
     end
   end
 

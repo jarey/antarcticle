@@ -1,6 +1,28 @@
-<article class="comment<%= if comment.user == comment.article.user then " comment-author" else " comment-other" end %>" id="comment_<%= comment.id %>">
-  <header><%= comment.user.username %><time datetime="<%= comment.created_at %>"><%= comment.created_at.strftime('%e %b %Y') %></time></header>
-  <div>
-    <%= comment.content %>
+<article class="comment comment-<%= if comment.user == comment.article.user then "author" else "other" end %>" id="comment_<%= comment.id %>">
+  <div class="toolb">
+    <% if can? :update, comment %>
+      <%= link_to edit_article_comment_path(comment.article, comment), class: "btn btn-mini" do %>
+        <i class="icon-pencil"></i>
+      <% end %>
+    <% end %>
+
+    <% if can? :destroy, comment %>
+      <%= link_to article_comment_path(comment.article, comment), class: "btn btn-mini btn-danger",
+              method: :delete, confirm: "Are you sure you want to delete this comment?" do %>
+        <i class="icon-remove"></i>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="comment-bubble comment-bubble-<%= if comment.user == comment.article.user then "author" else "other" end %>">
+    <header>
+      <i class="icon-user"></i> <%= link_to comment.user.username, comment.user %>
+      <time class="pull-right" datetime="<%= comment.created_at %>">
+        <i class="icon-calendar"></i> <%= comment.created_at.strftime('%e %b %Y %H:%M') %>
+      </time>
+    </header>
+    <div>
+      <%= comment.content %>
+    </div>
   </div>
 </article>
