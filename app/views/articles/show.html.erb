@@ -60,34 +60,7 @@
 
     </article>
 
-    <section class="comments" id="comments">
-      <h3>Comments</h3>
-      <hr />
-
-      <% if @article.comments.any? %>
-        <%= render @article.comments %>
-      <% else %>
-        <div class="centralized-inputs">
-          <h3>There is no comments</h3>
-        </div>
-      <% end %>
-
-      <% if can? :create, Comment %>
-        <%= form_for([@article, @comment],
-                     url: article_comments_path(@article, anchor: "comments_form"),
-                     html: { id: "comments_form", class: "clearfix comment-bubble comment-bubble-#{if @article.user == current_user then "author" else "other" end}" }) do |f| %>
-          <%= control_group @comment, :content do %>
-            <%= f.label :content, style: 'font-style: italic; font-size:11px' do %>
-              Editor uses Markdown markup language. You can read reference <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">here</a>.
-            <% end %>
-            <%= f.text_area :content, style: "width: 100%", rows: 10, placeholder: "Enter your comment here ..." %>
-          <% end %>
-          <%= f.submit "Post", class: "btn btn-primary pull-right" %>
-        <% end %>
-      <% else %>
-        Sign in to post comments
-      <% end %>
-    </section>
+    <%= render 'comments/list', article: @article, new_comment: @comment %>
 
   </div>
 </div>

@@ -25,7 +25,10 @@ class CommentsController < ApplicationController
   end
 
   def edit
-  #TODO
+    @comment_to_edit = Comment.find(params[:id])
+    authorize! :update, @comment_to_edit
+    @article = Article.find(params[:article_id])
+    render 'articles/show'
   end
 
   def destroy

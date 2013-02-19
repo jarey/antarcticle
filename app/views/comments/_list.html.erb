@@ -1,0 +1,27 @@
+<section class="comments" id="comments">
+  <h3 style="border-bottom: 1px dashed #646464">Comments</h3>
+
+  <% if article.comments.any? %>
+    <% for comment in article.comments %>
+      <% if comment == @comment_to_edit %>
+        <%= render 'comments/form', article: article, comment: comment %>
+      <% else %>
+        <%= render comment %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <div class="centralized-inputs">
+      <h3>There is no comments</h3>
+    </div>
+  <% end %>
+
+  <% if @comment_to_edit.nil? %>
+    <% if can? :create, Comment %>
+      <%= render 'comments/form', article: article, comment: new_comment %>
+    <% else %>
+      <div class="centralized-inputs">
+        Sign in to post comments
+      </div>
+    <% end %>
+  <% end %>
+</section>

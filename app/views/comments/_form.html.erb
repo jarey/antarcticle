@@ -1,0 +1,16 @@
+<%= form_for([article, comment],
+             url: if comment.new_record? then article_comments_path(article, anchor: "comments_form") else article_comment_path(article, comment, anchor: "comment_#{comment.id}") end,
+             method: if comment.new_record? then :post else :put end,
+             html: {
+               id: "comments_form",
+               class: "clearfix comment-bubble comment-bubble-#{if article.user == current_user then "author" else "other" end}"
+             }) do |f| %>
+  <%= errors_group comment %>
+  <%= control_group comment, :content do %>
+    <%= f.label :content, style: 'font-style: italic; font-size:11px' do %>
+      Editor uses Markdown markup language. You can read reference <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet" target="_blank">here</a>.
+    <% end %>
+    <%= f.text_area :content, style: "width: 100%", rows: 10, placeholder: "Enter your comment here ..." %>
+  <% end %>
+  <%= f.submit "Post", class: "btn btn-primary pull-right" %>
+<% end %>

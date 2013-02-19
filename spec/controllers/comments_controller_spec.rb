@@ -47,7 +47,29 @@ describe CommentsController do
   end
 
   describe "#edit" do
-    #TODO
+    before do
+      Article.stub(:find).with(article_id).and_return(article)
+    end
+
+    it "authorizes update" do
+      controller.should_receive(:authorize!).with(:update, comment)
+      get :edit, article_id: article_id, id: comment_id
+    end
+
+    it "assigns article" do
+      get :edit, article_id: article_id, id: comment_id
+      assigns(:article).should be article
+    end
+
+    it "assigns comment" do
+      get :edit, article_id: article_id, id: comment_id
+      assigns(:comment_to_edit).should be comment
+    end
+
+    it "shows article page" do
+      get :edit, article_id: article_id, id: comment_id
+      should render_template('articles/show')
+    end
   end
 
   describe "#create" do
@@ -82,6 +104,11 @@ describe CommentsController do
     it "tries to save created comment" do
       comment.should_receive(:save)
       post :create, article_id: article_id, comment: attributes
+    end
+
+    it "assigns article" do
+      post :create, article_id: article_id, comment: attributes
+      assigns(:article).should be article
     end
 
     context "when attrs are valid" do

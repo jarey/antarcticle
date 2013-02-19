@@ -24,7 +24,7 @@ set :use_sudo, false
 # remove old releases, keep only last 3
 set :keep_releases, 3
 # only fetch the changes since the last deploy
-set :deploy_via, :remote_cache
+#set :deploy_via, :remote_cache
 
 # skip test and development dependencies
 set :bundle_without, [:development, :test]

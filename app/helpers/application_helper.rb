@@ -1,3 +1,4 @@
+# encoding: UTF-8
 module ApplicationHelper
 
   def control_group(resource, field, &block)
@@ -7,6 +8,22 @@ module ApplicationHelper
         capture(&block)
       end
     end
+  end
+
+  def errors_group(resource)
+    html = ''
+    if resource.errors.any?
+      html << "<div>"
+        resource.errors.full_messages.each do |error|
+          html << '<div class="alert alert-error">'
+          html << '<a class="close" data-dismiss="alert" href="#">×</a>'
+          html << error
+          html << "</div>"
+        end
+      html << "</div>"
+    end
+
+    raw html
   end
 
   def markdown_render(text)

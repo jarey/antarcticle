@@ -96,4 +96,12 @@ describe Comment do
       it { find('#comments').should have_content "There is no comments" }
     end
   end
+
+  describe "edit" do
+
+  end
+
+  describe "delete" do
+
+  end
 end

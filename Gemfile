@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.12'
 # jquery
-gem 'jquery-rails'
+gem 'jquery-rails', '2.2.1'
 # sass version of twitter bootstrap
-gem "bootstrap-sass", "2.2.2"
+gem "bootstrap-sass", "2.3.0"
 # fake data generator for filling database
 gem "ffaker"
 # markdown processor
@@ -14,13 +14,13 @@ gem 'will_paginate', '3.0.4'
 # using bootstrap
 gem 'bootstrap-will_paginate', '0.0.9'
 # authorization
-gem 'cancan', '1.6.8'
+gem 'cancan', '1.6.9'
 # tags
 gem 'acts-as-taggable-on', '2.3.3'
 # new relic performancy monitor
-gem 'newrelic_rpm'
+gem 'newrelic_rpm', '3.5'
 # production server
-gem 'unicorn', '4.5.0'
+gem 'unicorn', '4.6.0'
 
 group :production do
   # production db driver
@@ -44,13 +44,15 @@ group :development do
   # deployment scripting
   gem 'capistrano'
   gem 'rvm-capistrano'
+  # better error page
+  gem 'better_errors'
 end
 
 group :test do
   # testing by simulating user interaction
   gem 'capybara', '2.0.2'
   # factories for test data
-  gem 'factory_girl_rails', '4.1.0'
+  gem 'factory_girl_rails', '4.2.0'
   # testing external http requests
   gem 'webmock'
 end
