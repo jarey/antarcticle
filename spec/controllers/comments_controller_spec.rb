@@ -36,8 +36,13 @@ describe CommentsController do
 
     context "when attrs are invalid" do
       before do
+        Article.stub(:find).with(article_id).and_return(article)
         comment.stub(:update_attributes).and_return(false)
         put :update, article_id: article_id, id: comment_id, comment: attributes
+      end
+
+      it "assigns article" do
+        assigns(:article).should be article
       end
 
       it "re-renders template" do

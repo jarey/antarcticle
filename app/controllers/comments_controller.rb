@@ -20,6 +20,7 @@ class CommentsController < ApplicationController
     if @comment.update_attributes(params[:comment])
       redirect_to article_path(params[:article_id], anchor: "comment_#{@comment.id}")
     else
+      @article = Article.find(params[:article_id])
       render 'articles/show'
     end
   end
