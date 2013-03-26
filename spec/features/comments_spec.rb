@@ -33,8 +33,8 @@ describe Comment do
       end
 
       context "submitted with invalid data" do
-        let(:long_text) { "a" * 3050 }
-        before { find('#comments_form').fill_in 'Enter your comment here ...', with: long_text }
+        let(:blank_string) { " " }
+        before { find('#comments_form').fill_in 'Enter your comment here ...', with: blank_string }
 
         it "doesnt create comment" do
           expect { find('#comments_form').click_button "Post" }.not_to change(Comment, :count)
@@ -48,7 +48,7 @@ describe Comment do
 
         it "fills form with data" do
           find('#comments_form').click_button "Post"
-          find('#comments').should have_placeholder 'Enter your comment here ...', value: long_text
+          find('#comments').should have_placeholder 'Enter your comment here ...', value: blank_string
         end
 
         it "shows error"# do
