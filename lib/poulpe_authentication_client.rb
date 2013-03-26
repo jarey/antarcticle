@@ -14,7 +14,7 @@ class PoulpeAuthenticationClient
   end
 
   def authenticate
-    request = create_request
+    request = create_request(@url, { :username => @username, :passwordHash => @password_hash })
     response = send_request(request)
     parse_response(response.body)
     success?
@@ -47,21 +47,11 @@ class PoulpeAuthenticationClient
     http.request(request)
   end
 
-  def create_request
-    request = Net::HTTP::Post.new(@url)
-    request.add_field "Content-Type", "text/xml"
-    request.body = compose_request_body()
-    request
+  def create_request(url, params)
+    require 'uri'
+    require 'cgi'
+    uri_string = url + "?" + params.map{|k,v| "#{k}=#{CGI::escape(v.to_s)}"}.join('&')
+    uri = URI(uri_string)
+    Net::HTTP::Get.new(uri.request_uri)
   end
-
-  def compose_request_body
-     "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" \
-     "<authentication xmlns=\"http://www.jtalks.org/namespaces/1.0\">" \
-       "<credentials>" \
-        "<username>#{@username}</username>" \
-        "<passwordHash>#{@password_hash}</passwordHash>" \
-       "</credentials>" \
-     "</authentication>"
-  end
-
 end

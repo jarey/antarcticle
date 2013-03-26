@@ -3,20 +3,16 @@ require 'poulpe_authentication_client'
 
 describe PoulpeAuthenticationClient do
   before do
-    @request_body = "" \
-     "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" \
-     "<authentication xmlns=\"http://www.jtalks.org/namespaces/1.0\">" \
-       "<credentials>" \
-        "<username>admin</username>" \
-        "<passwordHash>21232f297a57a5a743894a0e4a801fc3</passwordHash>" \
-       "</credentials>" \
-     "</authentication>"
+    @url = "http://poulpe.test/authenticate"
+    @username = "admin"
+    @password_hash = "21232f297a57a5a743894a0e4a801fc3"
+    @authenticator = PoulpeAuthenticationClient.new(@url, @username, @password_hash)
 
     @response_body = <<-STR
       <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
       <authentication xmlns="http://www.jtalks.org/namespaces/1.0">
           <credentials>
-              <username>admin</username>
+              <username>#{@username}</username>
           </credentials>
           <status>success</status>
           <profile>
@@ -30,7 +26,7 @@ describe PoulpeAuthenticationClient do
       <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
       <authentication xmlns="http://www.jtalks.org/namespaces/1.0">
           <credentials>
-              <username>admin</username>
+              <username>#{@username}</username>
           </credentials>
           <status>success</status>
       </authentication>
@@ -47,8 +43,6 @@ describe PoulpeAuthenticationClient do
       </authentication>
     STR
 
-    @url = "http://poulpe.test/authenticate"
-    @authenticator = PoulpeAuthenticationClient.new(@url, "admin", "21232f297a57a5a743894a0e4a801fc3")
   end
 
   subject { @authenticator }
@@ -58,14 +52,14 @@ describe PoulpeAuthenticationClient do
     context "success response" do
       context "with profile info" do
         before do
-          stub_request(:post, @url)
-          .with(body: @request_body)
+          stub_request(:get, @url)
+          .with(query: { "username" => @username, "passwordHash" => @password_hash })
           .to_return(body: @response_body)
         end
 
         it "successfully authenticates user" do
           @authenticator.authenticate.should be_true
-          WebMock.should have_requested(:post, @url).with(body: @request_body).once
+          WebMock.should have_requested(:get, @url).with(query: { "username" => @username, "passwordHash" => @password_hash }).once
         end
 
         describe "user info" do
@@ -83,14 +77,14 @@ describe PoulpeAuthenticationClient do
 
       context "without profile info" do
         before do
-          stub_request(:post, @url)
-          .with(body: @request_body)
+          stub_request(:get, @url)
+          .with(query: { "username" => @username, "passwordHash" => @password_hash })
           .to_return(body: @response_body_noprofile)
         end
 
         it "successfully authenticates user" do
           @authenticator.authenticate.should be_true
-          WebMock.should have_requested(:post, @url).with(body: @request_body).once
+          WebMock.should have_requested(:get, @url).with(query: { "username" => @username, "passwordHash" => @password_hash }).once
         end
 
         describe "user info" do
@@ -105,14 +99,14 @@ describe PoulpeAuthenticationClient do
 
     context "failure response" do
       before do
-        stub_request(:post, @url)
-          .with(body: @request_body)
+        stub_request(:get, @url)
+          .with(query: { "username" => @username, "passwordHash" => @password_hash })
           .to_return(body: @response_body_failure)
       end
 
       it "doesnt authenticate user" do
         @authenticator.authenticate.should be_false
-        WebMock.should have_requested(:post, @url).with(body: @request_body).once
+        WebMock.should have_requested(:get, @url).with(query: { "username" => @username, "passwordHash" => @password_hash }).once
       end
     end
   end
