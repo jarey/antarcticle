@@ -43,11 +43,12 @@ end
 
 task :symlink_configs do
   # database config
-  run "rm #{release_path}/config/database.yml"
+  run "rm -f #{release_path}/config/database.yml"
   run "ln -sfn #{shared_path}/config/database.yml #{release_path}/config/database.yml"
   # unicorn init script
   unicorn_config = from_template("config/unicorn_antarcticle.sh.erb")
   put unicorn_config, "/etc/init.d/unicorn_#{application}"
+  run "chmod +x /etc/init.d/unicorn_#{application}"
   # application config
   run "ln -sfn #{shared_path}/config/application.yml #{release_path}/config/application.yml"
 end
