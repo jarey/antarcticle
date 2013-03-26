@@ -28,6 +28,10 @@ describe Comment do
       before { @comment.content = "" }
       it { should_not be_valid }
     end
+    context "is blank" do
+      before { @comment.content = "    " }
+      it { should_not be_valid }
+    end
   end
 
   context "when user is not present" do
