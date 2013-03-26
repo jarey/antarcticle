@@ -80,6 +80,11 @@ describe SessionsController do
         post :create, { session: { username: username, password: password } }
         should render_template(:new)
       end
+
+      it "assigns username" do
+        post :create, { session: { username: username, password: password } }
+        assigns(:username).should be username
+      end
     end
   end
 

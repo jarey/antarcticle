@@ -13,9 +13,9 @@ describe "Authentication" do
 
   describe "sign in" do
     before { visit signin_path }
+    let(:user) { FactoryGirl.create(:user) }
 
     context "with valid credentials" do
-      let(:user) { FactoryGirl.create(:user) }
       before do
         fill_in "Username", with: user.username
         fill_in "Password", with: "1234"
@@ -42,6 +42,9 @@ describe "Authentication" do
       it { should_not have_content("Welcome, ")}
       it "shows error" do
         should have_error_message('Incorrect')
+      end
+      it "saves username" do
+        should have_placeholder 'Username', value: user.username
       end
     end
   end

@@ -5,10 +5,11 @@ class SessionsController < ApplicationController
   end
 
   def create
+    @username = params[:session][:username]
     if CONFIG["poulpe_authentication"]
-      user = AuthenticationService.authenticate(params[:session][:username], params[:session][:password])
+      user = AuthenticationService.authenticate(@username, params[:session][:password])
     else
-      user = User.find_by_username(params[:session][:username])
+      user = User.find_by_username(@username)
     end
     if user
       sign_in user
