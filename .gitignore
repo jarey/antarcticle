@@ -25,3 +25,6 @@ config/application.yml
 
 *.war
 .rbenv-version
+
+# precompiled assets
+/public/assets
