@@ -18,29 +18,23 @@ gem 'bootstrap-will_paginate'
 gem 'cancan'
 # tags
 gem 'acts-as-taggable-on'
-# new relic performancy monitor
-#gem 'newrelic_rpm', '3.5'
 # production server
-#gem 'unicorn', '4.6.0'
-platform :jruby do
-  gem 'puma'
-end
+gem 'unicorn', :platform => :ruby
+gem 'puma', :platform => :jruby
 
-
-#platform :jruby do
-#  gem 'jruby-openssl'
-#end
+# war building tool
+gem 'warbler', :platform => :jruby
 
 group :production do
   # production db driver
-  platform :jruby do
-    gem 'activerecord-jdbcmysql-adapter'
-  end
+  gem 'activerecord-jdbcmysql-adapter', :platform => :jruby
+  gem 'mysql2', :platform => :ruby
 end
 
 group :development, :test do
   # development and testing db driver
-  gem 'activerecord-jdbcsqlite3-adapter'
+  gem 'activerecord-jdbcsqlite3-adapter', :platform => :jruby
+  gem 'sqlite3', :platform => :ruby
   # testing with rspecs
   gem 'rspec-rails'
 end
@@ -51,7 +45,7 @@ group :development do
   # mutes assets pipeline log messages
   gem 'quiet_assets'
   # better server for development
-  #gem 'thin'
+  gem 'thin', :platform => :ruby
   # deployment scripting
   gem 'capistrano'
   gem 'rvm-capistrano'
@@ -81,15 +75,9 @@ group :assets do
   gem 'uglifier'
 end
 
+# JavaScript environment
 group :js_env do
-  # js environment
-  #gem 'libv8', '3.11.8.13'
-  #gem 'execjs'
-  #gem 'therubyracer', '0.11.3'
-  #
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  platform :jruby do
-    gem 'therubyrhino'
-  end
+  gem 'therubyrhino', :platform => :jruby
+  gem 'therubyracer', :require => 'v8', :platform => :ruby
 end
 

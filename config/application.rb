@@ -15,8 +15,11 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-CONFIG = YAML.load(File.read(File.expand_path('../application.yml', __FILE__)))
-CONFIG.merge! CONFIG.fetch(Rails.env, {})
+app_config = YAML.load(File.read(File.expand_path('../application.yml', __FILE__)))
+CONFIG = {}
+if app_config
+  CONFIG = app_config.merge app_config.fetch(Rails.env, {})
+end
 
 module Antarcticle
   class Application < Rails::Application
@@ -78,5 +81,8 @@ module Antarcticle
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # true causes connection to DB when precompiling
+    #config.assets.initialize_on_precompile = false
   end
 end
