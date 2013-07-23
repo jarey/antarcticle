@@ -4,7 +4,7 @@ describe TagsValidator do
   let(:validator) { TagsValidator.new({}) }
 
   before do
-    @model = mock('article')
+    @model = double('article')
     @model.stub("errors").and_return([])
     @model.errors.stub('[]').and_return({})
     @model.errors[].stub('add')

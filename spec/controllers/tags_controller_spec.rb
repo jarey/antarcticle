@@ -6,7 +6,7 @@ describe TagsController do
     let(:page) { "1" }
 
     before do
-      Article.stub(:get_page_tagged).and_return(mock('articles'))
+      Article.stub(:get_page_tagged).and_return(double('articles'))
     end
 
     it "authorizes read" do

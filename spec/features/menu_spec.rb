@@ -10,7 +10,7 @@ describe "navigation menu" do
           { "name" => "link1", "url" => "http://example1.com"},
           { "name" => "link2", "url" => "http://example2.com"}
         ]
-        CONFIG.stub!(:[]).and_return(nil)
+        CONFIG.stub(:[]).and_return(nil)
         CONFIG.should_receive(:has_key?).with("menu").and_return(true)
         CONFIG.should_receive(:[]).with("menu").and_return(@entries)
         visit root_path
@@ -25,7 +25,7 @@ describe "navigation menu" do
 
     context "entries not exists" do
       before do
-        CONFIG.stub!(:[]).and_return(nil)
+        CONFIG.stub(:[]).and_return(nil)
         CONFIG.should_receive(:has_key?).with("menu").and_return(false)
         visit root_path
       end

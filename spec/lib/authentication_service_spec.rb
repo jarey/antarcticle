@@ -3,7 +3,7 @@ require 'authentication_service'
 require 'poulpe_authentication_client'
 
 describe AuthenticationService do
-  let(:authenticator) { stub(PoulpeAuthenticationClient).as_null_object }
+  let(:authenticator) { double(PoulpeAuthenticationClient).as_null_object }
   describe "#authenticate" do
 
     let(:username) { "admin" }

@@ -6,7 +6,7 @@ describe UsersController do
   let(:username) { "user1" }
 
   describe "#show" do
-    let(:articles) { mock('articles').as_null_object }
+    let(:articles) { double('articles').as_null_object }
     let(:page) { "1" }
 
     before do

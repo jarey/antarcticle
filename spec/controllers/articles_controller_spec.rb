@@ -50,7 +50,7 @@ describe ArticlesController do
   end
 
   describe "#create" do
-    let(:articles) { mock('articles') }
+    let(:articles) { double('articles') }
     let(:current_user) { mock_model(User) }
 
     before do
@@ -151,7 +151,7 @@ describe ArticlesController do
   end
 
   describe "#new" do
-    let(:new_article) { mock('article') }
+    let(:new_article) { double('article') }
 
     before do
       Article.stub(:new).and_return(new_article)
@@ -174,7 +174,7 @@ describe ArticlesController do
   end
 
   describe "#index" do
-    let(:articles) { mock('articles') }
+    let(:articles) { double('articles') }
     let(:page) { "1" }
 
     before do
