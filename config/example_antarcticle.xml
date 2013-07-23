@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!-- The file should be used to configure Antarcticle, like its database access, mail passwords, etc. -->
+<!-- This file should be placed into $TOMCAT_HOME/conf/Catalina/localhost folder and its name should be the same -->
+<!-- as the name of war file. E.g. if the war file is 'antarcticle.war', then this file should be 'antarcticle.xml' -->
+<Context>
+  <WatchedResource>WEB-INF/web.xml</WatchedResource>
+  <!--database configuration, change user, password and database name if you need-->
+  <Environment name="ANTARCTICLE_DB_USER" value="root" type="java.lang.String"/>
+  <Environment name="ANTARCTICLE_DB_PASSWORD" value="root" type="java.lang.String"/>
+  <Environment name="ANTARCTICLE_DB_URL" type="java.lang.String"
+               value="jdbc:mysql://localhost/jtalks?characterEncoding=UTF-8"/>
+</Context>

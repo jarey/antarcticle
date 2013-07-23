@@ -20,5 +20,13 @@ development:
 test:
   <<: *defaults
 
+<%
+require File.expand_path("../lib/jndi_properties", __FILE__)
+%>
 production:
-  <<: *defaults
+  adapter: mysql
+  username: <%= JndiProperties['ANTARCTICLE_DB_USER'] || 'root' %>
+  password: <%= JndiProperties['ANTARCTICLE_DB_PASSWORD'] || '' %>
+  url:      <%= JndiProperties['ANTARCTICLE_DB_URL']      || 'jdbc:mysql://localhost:3306/antarcticle' %>
+
+
