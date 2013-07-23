@@ -1,37 +1,48 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.12'
+gem 'rails', '3.2.13'
 # jquery
-gem 'jquery-rails', '2.2.1'
+gem 'jquery-rails'
 # sass version of twitter bootstrap
-gem "bootstrap-sass", "2.3.0"
+gem 'bootstrap-sass'
 # fake data generator for filling database
-gem "ffaker"
+gem 'ffaker'
 # markdown processor
-gem 'redcarpet', '2.2.2'
+#gem 'redcarpet'
+gem 'kramdown'
 # serving pagination
-gem 'will_paginate', '3.0.4'
+gem 'will_paginate'
 # using bootstrap
-gem 'bootstrap-will_paginate', '0.0.9'
+gem 'bootstrap-will_paginate'
 # authorization
-gem 'cancan', '1.6.9'
+gem 'cancan'
 # tags
-gem 'acts-as-taggable-on', '2.3.3'
+gem 'acts-as-taggable-on'
 # new relic performancy monitor
-gem 'newrelic_rpm', '3.5'
+#gem 'newrelic_rpm', '3.5'
 # production server
-gem 'unicorn', '4.6.0'
+#gem 'unicorn', '4.6.0'
+platform :jruby do
+  gem 'puma'
+end
+
+
+#platform :jruby do
+#  gem 'jruby-openssl'
+#end
 
 group :production do
   # production db driver
-  gem 'mysql2'
+  platform :jruby do
+    gem 'activerecord-jdbcmysql-adapter'
+  end
 end
 
 group :development, :test do
   # development and testing db driver
-  gem 'sqlite3', '1.3.7'
+  gem 'activerecord-jdbcsqlite3-adapter'
   # testing with rspecs
-  gem 'rspec-rails', '2.12.2'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -40,7 +51,7 @@ group :development do
   # mutes assets pipeline log messages
   gem 'quiet_assets'
   # better server for development
-  gem 'thin'
+  #gem 'thin'
   # deployment scripting
   gem 'capistrano'
   gem 'rvm-capistrano'
@@ -50,30 +61,35 @@ end
 
 group :test do
   # testing by simulating user interaction
-  gem 'capybara', '2.0.2'
+  gem 'capybara'
   # factories for test data
-  gem 'factory_girl_rails', '4.2.0'
+  gem 'factory_girl_rails'
   # testing external http requests
   gem 'webmock'
 end
 
 group :assets do
   # sass stylesheet language
-  gem 'sass-rails',   '~> 3.2.5'
+  gem 'sass-rails'
   # coffescript
-  gem 'coffee-rails', '~> 3.2.2'
+  gem 'coffee-rails'
   # additional icon font to use with bootstrap
   gem 'font-awesome-sass-rails'
   # speed up assets compilation
-  gem 'turbo-sprockets-rails3', '0.3.6'
+  gem 'turbo-sprockets-rails3'
   # js compressor
-  gem 'uglifier', '>= 1.2.3'
+  gem 'uglifier'
 end
 
 group :js_env do
   # js environment
-  gem 'libv8', '3.11.8.13'
-  gem 'execjs'
-  gem 'therubyracer', '0.11.3'
+  #gem 'libv8', '3.11.8.13'
+  #gem 'execjs'
+  #gem 'therubyracer', '0.11.3'
+  #
+  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+  platform :jruby do
+    gem 'therubyrhino'
+  end
 end
 

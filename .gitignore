@@ -23,6 +23,5 @@ config/application.yml
 # vim tags
 /tags
 
-# zeus files
-/custom_plan.rb
-/zeus.json
+*.war
+.rbenv-version
