@@ -40,7 +40,7 @@ module ApplicationHelper
     #}
     #redcarpet = Redcarpet::Markdown.new(renderer, options)
     #redcarpet.render text
-    Kramdown::Document.new(text).to_html
+    Kramdown::Document.new(text, enable_coderay: false).to_html
   end
 
   def markdown(text)
