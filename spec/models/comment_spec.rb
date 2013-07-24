@@ -19,7 +19,7 @@ describe Comment do
 
   it { should be_valid }
 
-  describe "content length" do
+  describe "content" do
     context "is normal" do
       before { @comment.content = "a" * 32000 }
       it { should be_valid }

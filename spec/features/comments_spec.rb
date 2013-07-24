@@ -27,7 +27,6 @@ describe Comment do
 
         it "opens article page" do
           find('#comments_form').click_button "Post"
-          #TODO current_path.should == article_path(article, anchor: "comment_#{Comment.last.id}")
           current_path.should == article_path(article)
         end
       end
@@ -42,7 +41,6 @@ describe Comment do
 
         it "opens article page" do
           find('#comments_form').click_button "Post"
-          #TODO current_path.should == article_comments_path(article, anchor: "comments_form")
           current_path.should == article_comments_path(article)
         end
 
@@ -51,10 +49,10 @@ describe Comment do
           find('#comments').should have_placeholder 'Enter your comment here ...', value: empty_string
         end
 
-        it "shows error"# do
-          #click_button "Post"
-          #should have_error_message "Comment content can't be blank"
-        #end
+        it "shows error" do
+          click_button "Post"
+          should have_error_message "Content can't be blank"
+        end
       end
     end
 

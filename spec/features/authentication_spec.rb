@@ -36,7 +36,11 @@ describe "Authentication" do
     end
 
     context "with invalid credentials" do
-      before { click_button "Sign in" }
+      let(:invalid_username) { "fwwgwgqgwe" }
+      before do
+        fill_in "Username", with: invalid_username
+        click_button "Sign in"
+      end
 
       it { should have_link('Sign in', href: signin_path) }
       it { should_not have_content("Welcome, ")}
@@ -44,7 +48,7 @@ describe "Authentication" do
         should have_error_message('Incorrect')
       end
       it "saves username" do
-        should have_placeholder 'Username', value: user.username
+        should have_placeholder 'Username', value: invalid_username
       end
     end
   end
