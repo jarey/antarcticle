@@ -1,7 +1,7 @@
 <article class="comment comment-<%= if comment.user == comment.article.user then "author" else "other" end %>" id="comment_<%= comment.id %>">
   <div class="toolb">
     <% if can? :update, comment %>
-      <%= link_to edit_article_comment_path(comment.article, comment, anchor: 'comments_form'), class: "btn btn-mini" do %>
+      <%= link_to edit_article_comment_path(comment.article, comment, anchor: 'comments_form'), class: "btn btn-mini edit-comment-btn" do %>
         <i class="icon-pencil"></i>
       <% end %>
     <% end %>

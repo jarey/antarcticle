@@ -36,19 +36,28 @@ describe "navigation menu" do
     end
   end
 
-  #TODO
-  #describe "title" do
-    #context "specified" do
-      #before do
-        #CONFIG.stub!(:[]).and_return(nil)
-        #CONFIG.should_receive(:has_key?).with("menu").and_return(false)
-        #CONFIG.should_receive(:[]).with("title").and_return("Title")
-        #visit root_path
-      #end
+  describe "title" do
+    context "specified" do
+      before do
+        CONFIG.stub(:[]).with("title").and_return("Title")
+        CONFIG.should_receive(:[]).with("title").and_return("Title")
+        visit root_path
+      end
 
-      #it "shows specified title" do
-        #find(".brand").should have_content "Title"
-      #end
-    #end
-  #end
+      it "shows specified title" do
+        find(".brand").should have_content "Title"
+      end
+    end
+
+    context "not specified" do
+      before do
+        CONFIG.stub(:[]).and_return(nil)
+        visit root_path
+      end
+
+      it "shows default title" do
+        find(".brand").should have_content "Antarcticle"
+      end
+    end
+  end
 end
