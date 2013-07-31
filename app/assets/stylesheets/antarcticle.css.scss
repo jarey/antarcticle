@@ -208,8 +208,8 @@ article.entry {
       border-bottom: none;
       position: relative;
       .date {
-        top: 5px;
-        left: 3px;
+        position: absolute;
+        bottom: 60px;
       }
       h2 {
         font-size: 1.8em;
