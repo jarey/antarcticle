@@ -1,3 +1,5 @@
+$ = jQuery
+
 $.fn.extend
   tags_input: (options) ->
     settings =
