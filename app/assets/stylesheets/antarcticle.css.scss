@@ -207,12 +207,14 @@ article.entry {
       margin: 0;
       border-bottom: none;
       position: relative;
+      min-height: 40px;
       .date {
         position: absolute;
         bottom: 60px;
       }
       h2 {
         font-size: 1.8em;
+        line-height: 1em;
         border-bottom: 1px dashed rgb(238, 238, 238);
         border-left: medium none;
         border-right: medium none;
