@@ -8,5 +8,5 @@
   <Environment name="ANTARCTICLE_DB_USER" value="root" type="java.lang.String"/>
   <Environment name="ANTARCTICLE_DB_PASSWORD" value="root" type="java.lang.String"/>
   <Environment name="ANTARCTICLE_DB_URL" type="java.lang.String"
-               value="jdbc:mysql://localhost/jtalks?characterEncoding=UTF-8"/>
+               value="jdbc:mysql://localhost/antarcticle?characterEncoding=UTF-8"/>
 </Context>
