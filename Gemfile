@@ -68,7 +68,7 @@ group :assets do
   # coffescript
   gem 'coffee-rails'
   # additional icon font to use with bootstrap
-  gem 'font-awesome-sass-rails'
+  gem 'font-awesome-rails'
   # speed up assets compilation
   gem 'turbo-sprockets-rails3'
   # js compressor
